@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F11%2F06%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy test More info: Deployment]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[【Hexo】利用七牛qshell工具上传博客图片]]></title>
     <url>%2F2017%2F08%2F11%2Fhexo-qiniu-image-upload%2F</url>
-    <content type="text"><![CDATA[写在最前面本文对利用七牛qshell上传博客图片的设置及使用方法进行了整理 系统环境ubuntu: 16.04hexo: 3.3.8 qshell的配置 下载qshellGithub链接下载对应的版本，本文以ubuntu为例 qhell的配置 将qshell可执行文件存放到home文件夹下例如/home/用户名/qiniu 添加可执行权限chmod +x qshell 将qshell所在目录加入系统环境变量 1$ sudo gedit ~/.bashrc 添加如下环境变量 1export PATH=$PATH:/home/用户名/qiniu 运行source ~/.bashrc使修改立即生效 在终端内输入qshell测试一下是否添加成功 配置账户 在/home/用户名/qiniu内新建文件夹例如xiazuomo]]></content>
+    <content type="text"><![CDATA[写在最前面本文对利用七牛qshell上传博客图片的设置及使用方法进行了整理 系统环境ubuntu: 16.04hexo: 3.3.8 qshell的配置下载qshellGithub链接下载对应的版本，本文以ubuntu为例 qhell的配置将qshell可执行文件存放到home文件夹下例如/home/用户名/qiniu添加可执行权限chmod +x qshell将qshell所在目录加入系统环境变量1$ sudo gedit ~/.bashrc 添加如下环境变量1export PATH=$PATH:/home/用户名/qiniu 运行source ~/.bashrc使修改立即生效在终端内输入qshell测试一下是否添加成功 配置账户进入/home/用户名/qiniu目录，建立账户，此处使用-m多账户模式将账户信息建立在qshell工具所在目录，其中AccessKey和SecretKey可从七牛账户中获取1$ qshell -m account &lt;AccessKey&gt; &lt;SecretKey&gt; 账户建立完毕用如下命令查看是否建立成功1$ qshell -m account 配置上传设置在/home/用户名/qiniu目录下建立config文件输入如下参数，前四项自行填写123456789101112131415161718&#123; &quot;src_dir&quot; : &quot;/home/用户名/.../source/_posts&quot;, &quot;access_key&quot; : &quot;ak&quot;, &quot;secret_key&quot; : &quot;sk&quot;, &quot;bucket&quot; : &quot;bucket名称&quot;, &quot;ignore_dir&quot; : false, &quot;overwrite&quot; : true, &quot;check_exists&quot; : true, &quot;check_hash&quot; : false, &quot;check_size&quot; : false, &quot;skip_file_prefixes&quot; : &quot;.git&quot;, &quot;skip_path_prefixes&quot; : &quot;&quot;, &quot;skip_fixed_strings&quot; : &quot;&quot;, &quot;skip_suffixes&quot; : &quot;.md&quot;, &quot;rescan_local&quot; : true, &quot;log_file&quot; : &quot;upload.log&quot;, &quot;log_level&quot; : &quot;info&quot;&#125; 文件上传当_posts下添加的图片之后，在/home/用户名/qiniu目录下运行一下命令即可完成上传1$ qshell -m qupload config 外链获取方法1直接在网页界面复制外链 方法2使用qshell获取域名及文件列表，并将两者进行拼接，/home/用户名/qiniu目录下获取域名1$ qshell -m domains &lt;空间名&gt; 获取文件列表1$ qshell -m listbucket &lt;空间名&gt; &lt;存储文件列表的文件名&gt; 将两者进行拼接即可获取完整外链存储至final文件1$ cat &lt;存储文件列表的文件名&gt; | awk '&#123;print "域名"$1&#125;' &gt;final 参考https://github.com/qiniu/qshellhttps://segmentfault.com/q/1010000005149132/a-1020000005150007]]></content>
       <categories>
         <category>技巧</category>
       </categories>
