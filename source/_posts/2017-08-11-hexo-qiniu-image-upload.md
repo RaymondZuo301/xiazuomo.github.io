@@ -96,7 +96,7 @@ $ qshell -m listbucket <空间名> <存储文件列表的文件名>
 ```
 将两者进行拼接即可获取完整外链存储至final文件
 ```bash
-$ cat <存储文件列表的文件名> | awk '{print "域名"$1}' >final
+$ cat <存储文件列表的文件名> | awk '{print "域名/"$1}' >final
 ```
 ****
 
