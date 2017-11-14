@@ -100,12 +100,12 @@
 <meta property="og:site_name" content="虾琢磨">
 <meta property="og:description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makemake install 数据文件配置数据文件下载：Github链接解压存放，例如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/ougxj11md.bkt.clouddn.com/2017-11-14-osg-compiling-and-configuration/osg_test.png">
+<meta property="og:image" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/osg_test.png">
 <meta property="og:updated_time" content="2017-11-14T05:31:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【OSG】OSG、osgQT编译及配置（Linux&#x2F;ubuntu）">
 <meta name="twitter:description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makemake install 数据文件配置数据文件下载：Github链接解压存放，例如">
-<meta name="twitter:image" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/ougxj11md.bkt.clouddn.com/2017-11-14-osg-compiling-and-configuration/osg_test.png">
+<meta name="twitter:image" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/osg_test.png">
 
 
 
@@ -452,7 +452,7 @@
 <p>执行<code>source /etc/profile</code>或重启以更新系统环境变量</p>
 <p>至此OSG配置完成</p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>运行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">osgviewer cow.osgt</div></pre></td></tr></table></figure></p>
-<p>如显示以下图像则为测试成功<br><img src="ougxj11md.bkt.clouddn.com/2017-11-14-osg-compiling-and-configuration/osg_test.png" alt=""></p>
+<p>如显示以下图像则为测试成功<br><img src="osg_test.png" alt=""></p>
 <hr>
 <h2 id="osgQT编译"><a href="#osgQT编译" class="headerlink" title="osgQT编译"></a>osgQT编译</h2><h3 id="源代码下载、编译-1"><a href="#源代码下载、编译-1" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/openscenegraph/osgQt" target="_blank" rel="external">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -D BUILD_OSG_EXAMPLES=ON ..</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
 <h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>通过运行编译出来的例子验证是否配置成功</p>
