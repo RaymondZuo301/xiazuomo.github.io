@@ -449,7 +449,7 @@
 <h2 id="外链获取"><a href="#外链获取" class="headerlink" title="外链获取"></a>外链获取</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>直接在网页界面复制外链</p>
 <h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>使用qshell获取域名及文件列表，并将两者进行拼接，<code>/home/用户名/qiniu</code>目录下<br>获取域名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ qshell -m domains &lt;空间名&gt;</div></pre></td></tr></table></figure></p>
 <p>获取文件列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ qshell -m listbucket &lt;空间名&gt; &lt;存储文件列表的文件名&gt;</div></pre></td></tr></table></figure></p>
-<p>将两者进行拼接即可获取完整外链存储至final文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat &lt;存储文件列表的文件名&gt; | awk <span class="string">'&#123;print "域名"$1&#125;'</span> &gt;final</div></pre></td></tr></table></figure></p>
+<p>将两者进行拼接即可获取完整外链存储至final文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat &lt;存储文件列表的文件名&gt; | awk <span class="string">'&#123;print "域名/"$1&#125;'</span> &gt;final</div></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/qiniu/qshell" target="_blank" rel="external">https://github.com/qiniu/qshell</a><br><a href="https://segmentfault.com/q/1010000005149132/a-1020000005150007" target="_blank" rel="external">https://segmentfault.com/q/1010000005149132/a-1020000005150007</a></p>
 
@@ -478,6 +478,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/14/osg-compiling-and-configuration/" rel="prev" title="【OSG】OSG、osgQT编译及配置（Linux/ubuntu）">
+                【OSG】OSG、osgQT编译及配置（Linux/ubuntu） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -558,7 +574,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -580,7 +596,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
