@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OSG,Bullet," />
+  <meta name="keywords" content="OSG,Bullet,osgWorks,osgBullet," />
 
 
 
@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="写在最前面osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks: 3.0osgBullet: 3.">
-<meta name="keywords" content="OSG,Bullet">
+<meta name="description" content="写在最前面Bullet：物理引擎osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks">
+<meta name="keywords" content="OSG,Bullet,osgWorks,osgBullet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【OSG】osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
+<meta property="og:title" content="【OSG&#x2F;Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
 <meta property="og:url" content="http://xiazuomo.com/2017/11/27/osg-compiling-osgworks-and-osgbullet/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="写在最前面osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks: 3.0osgBullet: 3.">
+<meta property="og:description" content="写在最前面Bullet：物理引擎osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-27T07:47:04.000Z">
+<meta property="og:updated_time" content="2017-12-01T01:14:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【OSG】osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
-<meta name="twitter:description" content="写在最前面osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks: 3.0osgBullet: 3.">
+<meta name="twitter:title" content="【OSG&#x2F;Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
+<meta name="twitter:description" content="写在最前面Bullet：物理引擎osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <title>【OSG】osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87） | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87） | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -332,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【OSG】osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）</h1>
+          <h1 class="post-title" itemprop="name headline">【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）</h1>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-11-27T15:47:04+08:00">
-                2017-11-27
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-01T09:14:00+08:00">
+                2017-12-01
               </time>
             
           </span>
@@ -432,9 +432,12 @@
       
 
       
-        <h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><p>osgWorks：一些osg工具<br>osgBullet：基于Bullet的osg物理引擎<br>本文介绍了osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题</p>
+        <h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><p>Bullet：物理引擎<br>osgWorks：一些osg工具<br>osgBullet：基于Bullet的osg物理引擎<br>本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题</p>
 <hr>
 <h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>ubuntu: 16.04<br>CMake: 3.5.1<br>OSG: 3.5.7<br>Bullet: 2.87<br>osgWorks: 3.0<br>osgBullet: 3.0</p>
+<hr>
+<h2 id="Bullet编译"><a href="#Bullet编译" class="headerlink" title="Bullet编译"></a>Bullet编译</h2><p>源代码：<a href="https://github.com/bulletphysics/bullet3" target="_blank" rel="external">Github链接</a><br>下载最新的Release版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake ..</div><div class="line">make</div><div class="line">make install 2&gt;&amp;1 | tee  install.log</div></pre></td></tr></table></figure></p>
+<p>编译完成之后可以尝试一下<code>Example\ExampleBrowser</code><br>这样基本就搞定了，其他编译方式premake什么的没尝试成功</p>
 <hr>
 <h2 id="osgWorks编译及配置"><a href="#osgWorks编译及配置" class="headerlink" title="osgWorks编译及配置"></a>osgWorks编译及配置</h2><h3 id="源代码下载、编译"><a href="#源代码下载、编译" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/mccdo/osgworks" target="_blank" rel="external">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake ..</div><div class="line">make</div><div class="line">make install 2&gt;&amp;1 | tee  install.log</div></pre></td></tr></table></figure></p>
 <h3 id="过程中出现的问题及解决办法："><a href="#过程中出现的问题及解决办法：" class="headerlink" title="过程中出现的问题及解决办法："></a>过程中出现的问题及解决办法：</h3><h4 id="1-报错：mgv-mergeGeode-geode"><a href="#1-报错：mgv-mergeGeode-geode" class="headerlink" title="1.报错：mgv.mergeGeode(geode)"></a>1.报错：mgv.mergeGeode(geode)</h4><p>在<code>/src/osgwTools/GeometryModifier.cpp</code>中添加头文件<code>#include &lt;osg/Group&gt;</code><br>将<code>mgv.mergeGeode(geode);</code>修改为<code>mgv.mergeGroup(*geode.asGroup());</code></p>
@@ -477,6 +480,10 @@
             <a href="/tags/OSG/" rel="tag"># OSG</a>
           
             <a href="/tags/Bullet/" rel="tag"># Bullet</a>
+          
+            <a href="/tags/osgWorks/" rel="tag"># osgWorks</a>
+          
+            <a href="/tags/osgBullet/" rel="tag"># osgBullet</a>
           
         </div>
       
@@ -603,7 +610,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -662,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgWorks编译及配置"><span class="nav-number">3.</span> <span class="nav-text">osgWorks编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译"><span class="nav-number">3.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的问题及解决办法："><span class="nav-number">3.2.</span> <span class="nav-text">过程中出现的问题及解决办法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-报错：mgv-mergeGeode-geode"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.报错：mgv.mergeGeode(geode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-报错：void-set-value-type-a00-value-type-a01-value-type-a02-value-type-a03"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.报错：void set(value_type a00, value_type a01, value_type a02,value_type a03,</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置"><span class="nav-number">3.3.</span> <span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgBullet编译及配置"><span class="nav-number">4.</span> <span class="nav-text">osgBullet编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译-1"><span class="nav-number">4.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的问题及解决办法：-1"><span class="nav-number">4.2.</span> <span class="nav-text">过程中出现的问题及解决办法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-报错：找不到osgWorks，CMake-Error-at-CMakeModules-FindosgWorks-cmake-39-MESSAGE"><span class="nav-number">4.2.1.</span> <span class="nav-text">1.报错：找不到osgWorks，CMake Error at CMakeModules/FindosgWorks.cmake:39 (MESSAGE)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-报错：无法生成动态链接库"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.报错：无法生成动态链接库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-报错：编译example-patch-lowlevel时报“未定义的引用”错误"><span class="nav-number">4.2.3.</span> <span class="nav-text">3.报错：编译example/patch-lowlevel时报“未定义的引用”错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-报错：no-matching-function-for-call-to-‘osg-TriangleFunctor-operator-const-Vec3-amp-const-Vec3-amp-const-Vec3-amp-’"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.报错：no matching function for call to ‘osg::TriangleFunctor::operator()(const Vec3&, const Vec3&, const Vec3&)’</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置-1"><span class="nav-number">4.3.</span> <span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bullet编译"><span class="nav-number">3.</span> <span class="nav-text">Bullet编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgWorks编译及配置"><span class="nav-number">4.</span> <span class="nav-text">osgWorks编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译"><span class="nav-number">4.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的问题及解决办法："><span class="nav-number">4.2.</span> <span class="nav-text">过程中出现的问题及解决办法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-报错：mgv-mergeGeode-geode"><span class="nav-number">4.2.1.</span> <span class="nav-text">1.报错：mgv.mergeGeode(geode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-报错：void-set-value-type-a00-value-type-a01-value-type-a02-value-type-a03"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.报错：void set(value_type a00, value_type a01, value_type a02,value_type a03,</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置"><span class="nav-number">4.3.</span> <span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgBullet编译及配置"><span class="nav-number">5.</span> <span class="nav-text">osgBullet编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译-1"><span class="nav-number">5.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的问题及解决办法：-1"><span class="nav-number">5.2.</span> <span class="nav-text">过程中出现的问题及解决办法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-报错：找不到osgWorks，CMake-Error-at-CMakeModules-FindosgWorks-cmake-39-MESSAGE"><span class="nav-number">5.2.1.</span> <span class="nav-text">1.报错：找不到osgWorks，CMake Error at CMakeModules/FindosgWorks.cmake:39 (MESSAGE)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-报错：无法生成动态链接库"><span class="nav-number">5.2.2.</span> <span class="nav-text">2.报错：无法生成动态链接库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-报错：编译example-patch-lowlevel时报“未定义的引用”错误"><span class="nav-number">5.2.3.</span> <span class="nav-text">3.报错：编译example/patch-lowlevel时报“未定义的引用”错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-报错：no-matching-function-for-call-to-‘osg-TriangleFunctor-operator-const-Vec3-amp-const-Vec3-amp-const-Vec3-amp-’"><span class="nav-number">5.2.4.</span> <span class="nav-text">4.报错：no matching function for call to ‘osg::TriangleFunctor::operator()(const Vec3&, const Vec3&, const Vec3&)’</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置-1"><span class="nav-number">5.3.</span> <span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -834,7 +841,7 @@
         var disqus_config = function () {
           this.page.url = 'http://xiazuomo.com/2017/11/27/osg-compiling-osgworks-and-osgbullet/';
           this.page.identifier = '2017/11/27/osg-compiling-osgworks-and-osgbullet/';
-          this.page.title = '【OSG】osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）';
+          this.page.title = '【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiazuomo.disqus.com/embed.js';
