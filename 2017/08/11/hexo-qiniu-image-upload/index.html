@@ -436,7 +436,7 @@
 <hr>
 <h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>ubuntu: 16.04<br>hexo: 3.3.8</p>
 <hr>
-<h2 id="qshell的配置"><a href="#qshell的配置" class="headerlink" title="qshell的配置"></a>qshell的配置</h2><h3 id="下载qshell"><a href="#下载qshell" class="headerlink" title="下载qshell"></a>下载qshell</h3><p><a href="https://github.com/qiniu/qshell" target="_blank" rel="external">Github链接</a><br>下载对应的版本，本文以ubuntu为例</p>
+<h2 id="qshell的配置"><a href="#qshell的配置" class="headerlink" title="qshell的配置"></a>qshell的配置</h2><h3 id="下载qshell"><a href="#下载qshell" class="headerlink" title="下载qshell"></a>下载qshell</h3><p><a href="https://github.com/qiniu/qshell" target="_blank" rel="noopener">Github链接</a><br>下载对应的版本，本文以ubuntu为例</p>
 <h3 id="qhell的配置"><a href="#qhell的配置" class="headerlink" title="qhell的配置"></a>qhell的配置</h3><p>将qshell可执行文件存放到home文件夹下例如<code>/home/用户名/qiniu</code><br>添加可执行权限<code>chmod +x qshell</code><br>将qshell所在目录加入系统环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo gedit ~/.bashrc</div></pre></td></tr></table></figure></p>
 <p>添加如下环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/用户名/qiniu</div></pre></td></tr></table></figure></p>
 <p>运行<code>source ~/.bashrc</code>使修改立即生效<br>在终端内输入<code>qshell</code>测试一下是否添加成功</p>
@@ -451,7 +451,7 @@
 <p>获取文件列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ qshell -m listbucket &lt;空间名&gt; &lt;存储文件列表的文件名&gt;</div></pre></td></tr></table></figure></p>
 <p>将两者进行拼接即可获取完整外链存储至final文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat &lt;存储文件列表的文件名&gt; | awk <span class="string">'&#123;print "域名/"$1&#125;'</span> &gt;final</div></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/qiniu/qshell" target="_blank" rel="external">https://github.com/qiniu/qshell</a><br><a href="https://segmentfault.com/q/1010000005149132/a-1020000005150007" target="_blank" rel="external">https://segmentfault.com/q/1010000005149132/a-1020000005150007</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/qiniu/qshell" target="_blank" rel="noopener">https://github.com/qiniu/qshell</a><br><a href="https://segmentfault.com/q/1010000005149132/a-1020000005150007" target="_blank" rel="noopener">https://segmentfault.com/q/1010000005149132/a-1020000005150007</a></p>
 
       
     </div>
