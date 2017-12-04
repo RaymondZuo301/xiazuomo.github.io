@@ -1,20 +1,23 @@
 ---
-title: 【OSG】osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）
+title: 【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）
 categories:
   - 技巧
 tags:
   - OSG
   - Bullet
+  - osgWorks
+  - osgBullet
 comments: true
 mathjax: false
 date: 2017-11-27 15:47:04
-updated: 2017-11-27 15:47:04
+updated: 2017-12-01 09:14:00
 ---
 
 ## 写在最前面
+Bullet：物理引擎
 osgWorks：一些osg工具
 osgBullet：基于Bullet的osg物理引擎
-本文介绍了osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题
+本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题
 ****
 
 ## 系统环境
@@ -24,6 +27,20 @@ OSG: 3.5.7
 Bullet: 2.87
 osgWorks: 3.0
 osgBullet: 3.0
+****
+
+## Bullet编译
+源代码：[Github链接](https://github.com/bulletphysics/bullet3)
+下载最新的Release版本
+```bash
+mkdir build
+cd build
+cmake ..
+make
+make install 2>&1 | tee  install.log
+```
+编译完成之后可以尝试一下`Example\ExampleBrowser`
+这样基本就搞定了，其他编译方式premake什么的没尝试成功
 ****
 
 ## osgWorks编译及配置
@@ -69,6 +86,16 @@ void Orientation::getYPR( const osg::Quat& q, double& yaw, double& pitch, double
     getYPR( m, yaw, pitch, roll );
 }
 ```
+### 环境变量配置
+```bash
+sudo gedit /etc/profile
+```
+在最末尾加上如下语句
+```bash
+#osgWorks
+export osgWorks_DIR=/usr/local/lib
+```
+执行`source /etc/profile`或重启以更新系统环境变量
 ****
 
 ## osgBullet编译及配置
@@ -101,7 +128,18 @@ this->operator()(*(vptr),*(vptr+1),*(vptr+2));
 ```cpp
 this->operator()(*(vptr),*(vptr+1),*(vptr+2),false);
 ```
+### 环境变量配置
+```bash
+sudo gedit /etc/profile
+```
+在最末尾加上如下语句
+```bash
+#osgBullet
+export osgBullet_DIR=/usr/local/lib
+```
+执行`source /etc/profile`或重启以更新系统环境变量
 ****
+
 以上osgWorks及osgBullet编译安装完毕
 ## 参考
 https://www.cnblogs.com/lyggqm/p/6733423.html
