@@ -1,2 +1,6 @@
 \.deploy_git/
 /public
+
+yulib\.resource/
+
+yulib\.config
