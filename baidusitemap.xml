@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://xiazuomo.com/2017/11/27/osg-compiling-osgworks-and-osgbullet/</loc>
+    <lastmod>2017-12-01T01:14:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）</title>
+        <pubTime>2017-11-27T07:47:04.000Z</pubTime>
+        
+        <tag>OSG</tag>
+         
+        <tag>Bullet</tag>
+         
+        <tag>osgWorks</tag>
+         
+        <tag>osgBullet</tag>
+         
+         
+           
+             
+              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/</loc>
+    <lastmod>2017-11-14T05:31:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>【OSG】OSG、osgQT编译及配置（Linux/ubuntu）</title>
+        <pubTime>2017-11-14T05:31:56.000Z</pubTime>
+        
+        <tag>OSG</tag>
+         
+        <tag>QT</tag>
+         
+         
+           
+             
+              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>http://xiazuomo.com/2017/08/11/hexo-qiniu-image-upload/</loc>
+    <lastmod>2017-08-11T01:34:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>【Hexo】利用七牛qshell工具上传博客图片</title>
+        <pubTime>2017-08-11T01:34:11.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>
