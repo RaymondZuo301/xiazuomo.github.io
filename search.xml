@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[【CMake】CMake中遇到的问题汇总，持续更新]]></title>
+    <title><![CDATA[【CMake】CMake中遇到的问题汇总(持续更新)]]></title>
     <url>%2F2018%2F04%2F20%2Fcmake-tips%2F</url>
     <content type="text"><![CDATA[编译动态库B时提示被链接的A库需用“-fPIC”重新编译错误：can not be used when making a shared object; recompile with -fPIC解决：重新编译A库12add_library( A $&#123;SRC&#125;)set_property(TARGET A PROPERTY POSITION_INDEPENDENT_CODE ON)]]></content>
       <categories>
