@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiazuomo.com/2018/04/20/cmake-tips/</loc>
+    
+    <lastmod>2018-04-20T00:46:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiazuomo.com/2017/11/27/osg-compiling-osgworks-and-osgbullet/</loc>
     
     <lastmod>2017-12-01T01:14:00.000Z</lastmod>
