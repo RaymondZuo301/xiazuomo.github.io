@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[基于球面均匀采样的旋转变换采样]]></title>
+    <url>%2F2018%2F05%2F28%2Frotation-sampling%2F</url>
+    <content type="text"><![CDATA[基于球面均匀采样的旋转变换采样写在前面在解决点云可见性问题时，需将点云绕中心进行N次旋转变换，同时保证随机性（均匀性），所以需求一种生成N个随机旋转变换的采样方法。可以将求旋转变换的问题转化为对一个$r=1$的单位球面进行均匀采样的问题，因为球面上任意一点可看做是空间向量$\vec{v}(x,y,z)$，进而可转换为空间旋转变换 球面均匀采样球坐标系采样为了对单位球面进行均匀采样，第一个想到的就是对球坐标系$(r,\theta,\phi)$中的$\theta$、$\phi$分别进行均匀采样，尝试绘制点云图如下所示，可见两级相较中间密度更大，整体并不均匀python代码如下：12345678910111213141516171819202122232425from numpy import *import mathimport matplotlib.pyplot as pltfrom mpl_toolkits.mplot3d import Axes3D x = []y = []z = []N = 50d = 2*math.pi/Nfor i in range(N): for j in range(N): zt = math.sin(d*j) zt_c = math.cos(d*j) xt = zt_*math.cos(d*i) yt = zt_*math.sin(d*i) z.append(zt) x.append(xt) y.append(yt)fig=plt.figure(dpi=120) ax=fig.add_subplot(111,projection='3d') ax.scatter(x,y,z,c='b',marker='.',s=10,linewidth=0,alpha=1,cmap='spectral') plt.show() 基于斐波那契格点的球面均匀采样根据参考文献2中所述的方法，尝试利用斐波那契格点进行球面均匀采样，通式如下： {e_{test}} = \frac{1}{N'}\sum\limits{i = 1}^{N'} {L({y_i},\widehat f({x_i}))}结果如下图所示python代码如下：1234567891011121314151617181920212223import mathimport matplotlib.pyplot as plt from mpl_toolkits.mplot3d import Axes3D x = []y = []z = []N = 2500pi = math.piphi = 0.618for n in range(1,N+1): zt = (2*n-1.0)/float(N)-1 xt = math.sqrt(1-zt*zt)*math.cos(2*pi*n*phi) yt = math.sqrt(1-zt*zt)*math.sin(2*pi*n*phi) z.append(zt) x.append(xt) y.append(yt)fig=plt.figure(dpi=120) ax=fig.add_subplot(111,projection='3d') ax.scatter(x,y,z,c='b',marker='.',s=10,linewidth=0,alpha=1,cmap='spectral') plt.show() 参考文献 https://zhuanlan.zhihu.com/p/26052376 https://zhuanlan.zhihu.com/p/25988652?group_id=828963677192491008 https://zhuanlan.zhihu.com/p/25998937?group_id=829506039526354944]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Eigen</tag>
+        <tag>点云</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【CMake】CMake中遇到的问题汇总(持续更新)]]></title>
     <url>%2F2018%2F04%2F20%2Fcmake-tips%2F</url>
     <content type="text"><![CDATA[编译动态库B时提示被链接的A库需用“-fPIC”重新编译错误：can not be used when making a shared object; recompile with -fPIC解决：重新编译A库12add_library( A $&#123;SRC&#125;)set_property(TARGET A PROPERTY POSITION_INDEPENDENT_CODE ON)]]></content>

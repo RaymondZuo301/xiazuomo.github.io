@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://xiazuomo.com/2018/05/28/rotation-sampling/</loc>
+    <lastmod>2018-05-28T07:24:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于球面均匀采样的旋转变换采样</title>
+        <pubTime>2018-05-28T07:24:43.000Z</pubTime>
+        
+        <tag>Eigen</tag>
+         
+        <tag>点云</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://xiazuomo.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xiazuomo.com/2018/04/20/cmake-tips/</loc>
     <lastmod>2018-04-20T00:46:06.000Z</lastmod>
     <data>
