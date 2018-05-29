@@ -1,11 +1,11 @@
 ---
 title: {{ title }}
-date: {{ date }}
-updated: {{ date }}
 categories: 
 - temp
 tags:
 - temp
+date: {{ date }}
+updated: {{ date }}
 comments: true
 mathjax: false
 ---
