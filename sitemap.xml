@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiazuomo.com/about/index.html</loc>
+    
+    <lastmod>2018-05-29T06:07:36.250Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiazuomo.com/2018/05/29/concurrent-hash-guide/</loc>
+    
+    <lastmod>2018-05-29T05:42:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiazuomo.com/2018/05/28/rotation-sampling/</loc>
     
     <lastmod>2018-05-28T07:24:43.000Z</lastmod>

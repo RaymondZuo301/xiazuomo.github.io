@@ -3,6 +3,31 @@
 
 
     
+    
+  <url>
+    <loc>http://xiazuomo.com/2018/05/29/concurrent-hash-guide/</loc>
+    <lastmod>2018-05-29T05:42:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>【junction】C++并发HashMap简介</title>
+        <pubTime>2018-05-29T05:42:48.000Z</pubTime>
+        
+        <tag>C++</tag>
+         
+        <tag>Hash</tag>
+         
+        <tag>并行/并发/多线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://xiazuomo.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://xiazuomo.com/2018/05/28/rotation-sampling/</loc>
     <lastmod>2018-05-28T07:24:43.000Z</lastmod>
