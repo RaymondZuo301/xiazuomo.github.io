@@ -1,5 +1,5 @@
 ---
-title: 【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）
+title: Bullet、osgWorks、osgBullet编译及配置（适用于最新的OSG-3.5.7，Bullet-2.87）
 categories:
   - 技巧
 tags:

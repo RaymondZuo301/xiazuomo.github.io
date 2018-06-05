@@ -1,5 +1,5 @@
 ---
-title: 【junction】C++并发HashMap简介
+title: C++并发Hash库junction简介
 categories:
   - 算法
 tags:
@@ -37,7 +37,7 @@ C++并没有像Java那样原生的ConcurrentHashMap，通常有如下解决方�
 junction是一个并发数据结构库，也正是本文将着重介绍的。junction包含多种HashMap的实现方式：
 - ConcurrentMap_Crude：一种并发HashMap的简陋实现
 - junction::ConcurrentMap_Linea：一种受Java non-blocking HashMap启发的[简单无锁HashMap](http://preshing.com/20130605/the-worlds-simplest-lock-free-hash-table/)
-- junction::ConcurrentMap_Leapfrog：类似于Linea，但是使用了跳房子[哈希法（Hopscotch Hashing）](https://en.wikipedia.org/wiki/Hopscotch_hashing)的松散搜索策略
+- junction::ConcurrentMap_Leapfrog：类似于Linea，但是使用了[跳房子哈希法（Hopscotch Hashing）](https://en.wikipedia.org/wiki/Hopscotch_hashing)的松散搜索策略
 - junction::ConcurrentMap_Grampa：其与Leapfrog类似，但是在数据量大的时候会拆分成多个更小的、定长的Leapfrog
 
 ## 速度对比
@@ -45,7 +45,7 @@ junction与其他并发Hash库的对比
 ![](concurrent-map-graph.png) 
 
 ## Turf
-junction依赖于作者自己的另一个[Turf](https://github.com/preshing/turf)库提供了很多跨平台（Windows、Ubuntu、OS X、iOS）的API，如线程、原子操作、锁等。
+junction依赖于作者自己的另一个[Turf](https://github.com/preshing/turf)库，它提供了很多跨平台（Windows、Ubuntu、OS X、iOS）的API，如线程、原子操作、锁等。
 
 ## 编译
 ```bash
@@ -168,4 +168,3 @@ int main()
 # 参考文献
 - https://github.com/preshing/junction
 - http://preshing.com/20160201/new-concurrent-hash-maps-for-cpp
-- 

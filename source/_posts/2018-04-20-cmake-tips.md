@@ -1,5 +1,5 @@
 ---
-title: 【CMake】CMake中遇到的问题汇总(持续更新)
+title: CMake中遇到的问题汇总(持续更新)
 categories:
   - 技巧
 tags:

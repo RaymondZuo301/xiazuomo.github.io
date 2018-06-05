@@ -1,5 +1,5 @@
 ---
-title: 【OSG】OSG、osgQT编译及配置（Linux/ubuntu）
+title: OSG、osgQT编译及配置
 categories:
   - 技巧
 tags:

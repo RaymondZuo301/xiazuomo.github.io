@@ -1,5 +1,5 @@
 ---
-title: 【Hexo】利用七牛qshell工具上传博客图片
+title: 利用七牛qshell工具上传Hexo博客图片
 categories:
   - 技巧
 tags:
