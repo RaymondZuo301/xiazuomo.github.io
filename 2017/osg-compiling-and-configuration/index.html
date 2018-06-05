@@ -37,7 +37,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/article/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -71,48 +71,48 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/article/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="C++,Hash,并行/并发/多线程," />
+<link href="/article/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="OSG,QT," />
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/article/favicon.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="写在最前面由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了Junction_Concur">
-<meta name="keywords" content="C++,Hash,并行&#x2F;并发&#x2F;多线程">
+<meta name="description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makem">
+<meta name="keywords" content="OSG,QT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【junction】C++并发HashMap简介">
-<meta property="og:url" content="http://xiazuomo.com/2018/05/29/concurrent-hash-guide/index.html">
+<meta property="og:title" content="【OSG】OSG、osgQT编译及配置（Linux&#x2F;ubuntu）">
+<meta property="og:url" content="http://xiazuomo.com/2017/osg-compiling-and-configuration/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="写在最前面由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了Junction_ConcurrentMap库,本文对HashMap、现有C++并发Hash库、Junctio">
+<meta property="og:description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makemake install 数据文件配置数据文件下载：Github链接解压存放，例如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xiazuomo.com/2018/05/29/concurrent-hash-guide/concurrent-map-graph.png">
-<meta property="og:updated_time" content="2018-05-29T05:42:48.000Z">
+<meta property="og:image" content="http://xiazuomo.com/2017/osg-compiling-and-configuration/osg_test.png">
+<meta property="og:updated_time" content="2017-11-14T05:31:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【junction】C++并发HashMap简介">
-<meta name="twitter:description" content="写在最前面由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了Junction_ConcurrentMap库,本文对HashMap、现有C++并发Hash库、Junctio">
-<meta name="twitter:image" content="http://xiazuomo.com/2018/05/29/concurrent-hash-guide/concurrent-map-graph.png">
+<meta name="twitter:title" content="【OSG】OSG、osgQT编译及配置（Linux&#x2F;ubuntu）">
+<meta name="twitter:description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makemake install 数据文件配置数据文件下载：Github链接解压存放，例如">
+<meta name="twitter:image" content="http://xiazuomo.com/2017/osg-compiling-and-configuration/osg_test.png">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '/article/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://xiazuomo.com/2018/05/29/concurrent-hash-guide/"/>
+  <link rel="canonical" href="http://xiazuomo.com/2017/osg-compiling-and-configuration/"/>
 
 
 
 
 
-  <title>【junction】C++并发HashMap简介 | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【OSG】OSG、osgQT编译及配置（Linux/ubuntu） | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -174,7 +174,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/article/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">虾琢磨</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/article/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -212,7 +212,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/article/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -222,7 +222,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/article/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -232,7 +232,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/article/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -242,7 +242,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/article/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -317,12 +317,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2018/05/29/concurrent-hash-guide/">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/article/2017/osg-compiling-and-configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZFR">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="image" content="/article/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【junction】C++并发HashMap简介</h1>
+          <h1 class="post-title" itemprop="name headline">【OSG】OSG、osgQT编译及配置（Linux/ubuntu）</h1>
         
 
         <div class="post-meta">
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T13:42:48+08:00">
-                2018-05-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T13:31:56+08:00">
+                2017-11-14
               </time>
             
 
@@ -362,8 +362,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-29T13:42:48+08:00">
-                2018-05-29
+              <time title="更新于" itemprop="dateModified" datetime="2017-11-14T13:31:56+08:00">
+                2017-11-14
               </time>
             
           </span>
@@ -381,8 +381,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/article/categories/技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">技巧</span>
                   </a>
                 </span>
 
@@ -399,9 +399,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/29/concurrent-hash-guide/#comments" itemprop="discussionUrl">
+                <a href="/article/2017/osg-compiling-and-configuration/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/29/concurrent-hash-guide/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/osg-compiling-and-configuration/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -434,39 +434,31 @@
       
 
       
-        <h1 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h1><p>由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了<a href="https://github.com/preshing/junction" target="_blank" rel="noopener">Junction_ConcurrentMap</a>库,本文对HashMap、现有C++并发Hash库、Junction的编译及用例做了简要介绍，并未涉及Hash函数相关内容。</p>
-<h1 id="什么是HashMap"><a href="#什么是HashMap" class="headerlink" title="什么是HashMap"></a>什么是HashMap</h1><h2 id="数组和链表"><a href="#数组和链表" class="headerlink" title="数组和链表"></a>数组和链表</h2><p>数组和链表是两种常见的数据结构，他们各有优缺点：</p>
+        <h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><p>本文介绍了OSG及osgQT的编译及配置过程</p>
+<hr>
+<h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>ubuntu: 16.04<br>CMake: 3.5.1<br>OSG: 3.5.7</p>
+<hr>
+<h2 id="OSG编译及配置"><a href="#OSG编译及配置" class="headerlink" title="OSG编译及配置"></a>OSG编译及配置</h2><h3 id="源代码下载、编译"><a href="#源代码下载、编译" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/openscenegraph/OpenSceneGraph" target="_blank" rel="noopener">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -D BUILD_OSG_EXAMPLES=ON ..</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<h3 id="数据文件配置"><a href="#数据文件配置" class="headerlink" title="数据文件配置"></a>数据文件配置</h3><p>数据文件下载：<a href="https://github.com/openscenegraph/OpenSceneGraph-Data" target="_blank" rel="noopener">Github链接</a><br>解压存放，例如<code>/home/&lt;用户名&gt;/Documents/OpenSceneGraph-Data</code></p>
+<h3 id="OSG环境变量配置"><a href="#OSG环境变量配置" class="headerlink" title="OSG环境变量配置"></a>OSG环境变量配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/profile</div></pre></td></tr></table></figure>
+<p>在最末尾加上如下语句<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#OSG</span></div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/usr/<span class="built_in">local</span>/lib64</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/share/OpenSceneGraph/bin</div><div class="line"><span class="built_in">export</span> OSG_FILE_PATH=/home/&lt;用户名&gt;/Documents/OpenSceneGraph-Data</div><div class="line"><span class="built_in">export</span> OSG_DIR=/usr/<span class="built_in">local</span>/lib64</div></pre></td></tr></table></figure></p>
+<p>分别为</p>
 <ul>
-<li>数组长度固定，下标与值一一对应，可以通过下标对存储的值进行索引,查询时间复杂度为O(1)。其长度固定正是其缺点，分配长度过短如果实际存储数据量超过定长会报错，而分配过大空间又会造成不必要的浪费，且占据的空间不会随元素的删除而释放。</li>
-<li>链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的，其优势为无长度限制，非顺序的存储结构使内存利用更为充分，一般的单链表查询时间复杂度为O(n)。</li>
+<li>添加OSG库路径到系统共享库路径</li>
+<li>OSG的一些可执行文件路径</li>
+<li>OSG的数据文件路径（根据实际存放位置修改）</li>
+<li>OSG动态链接库路径</li>
 </ul>
-<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap则是一种既不定长又无需遍历查询的数据结构，在无冲突的情况下时间复杂度为O(1)，而这是通过牺牲更大空间而实现的，是一种空间换时间的做法。HashMap用KEY-VALUE来实现数据存储，插入数据时将KEY通过Hash函数转换为Hashcode(通常为32位或64位uint)，由Hashcode决定存储的位置。但是存在一个冲突问题，那就是当你用Hash函数作用在两个互不相同KEY时，得到了相同的Hashcode，也就是不同的KEY-VALUE将会存到相同位置，这时就需要解决冲突，通常的解决办法有：开放定址法、链地址法、再哈希法等。</p>
-<h1 id="C-并发HashMap"><a href="#C-并发HashMap" class="headerlink" title="C++并发HashMap"></a>C++并发HashMap</h1><p>C++并没有像Java那样原生的ConcurrentHashMap，通常有如下解决方案：</p>
-<ul>
-<li><a href="http://zh.cppreference.com/w/cpp/container/map" target="_blank" rel="noopener">std::map</a>+<a href="http://zh.cppreference.com/w/cpp/thread/mutex" target="_blank" rel="noopener">std::mutex</a>：利用std::map加锁实现</li>
-<li><a href="https://www.threadingbuildingblocks.org/" target="_blank" rel="noopener">TBB</a> concurrent_hash_map：Intel公司开发的并行编程开发的工具</li>
-<li><a href="http://libcds.sourceforge.net/" target="_blank" rel="noopener">libCds</a> MichaelKVList：一个无锁、细粒度算法的C++模板库</li>
-<li><a href="https://github.com/argv0/nbds" target="_blank" rel="noopener">nbds</a> hashtable_t：非阻塞结构的C实现</li>
-<li><a href="https://ucf-cs.github.io/Tervel/" target="_blank" rel="noopener">Tervel</a> HashMap：一种为共享内存系统设计的无等待算法</li>
-<li><a href="https://github.com/facebook/folly" target="_blank" rel="noopener">Folly</a> AtomicHashMap：一个Facebook开源的C++库</li>
-</ul>
-<h1 id="junction"><a href="#junction" class="headerlink" title="junction"></a>junction</h1><h2 id="关于junction"><a href="#关于junction" class="headerlink" title="关于junction"></a>关于junction</h2><p>junction是一个并发数据结构库，也正是本文将着重介绍的。junction包含多种HashMap的实现方式：</p>
-<ul>
-<li>ConcurrentMap_Crude：一种并发HashMap的简陋实现</li>
-<li>junction::ConcurrentMap_Linea：一种受Java non-blocking HashMap启发的<a href="http://preshing.com/20130605/the-worlds-simplest-lock-free-hash-table/" target="_blank" rel="noopener">简单无锁HashMap</a></li>
-<li>junction::ConcurrentMap_Leapfrog：类似于Linea，但是使用了<a href="https://en.wikipedia.org/wiki/Hopscotch_hashing" target="_blank" rel="noopener">跳房子哈希法（Hopscotch Hashing）</a>的松散搜索策略</li>
-<li>junction::ConcurrentMap_Grampa：其与Leapfrog类似，但是在数据量大的时候会拆分成多个更小的、定长的Leapfrog</li>
-</ul>
-<h2 id="速度对比"><a href="#速度对比" class="headerlink" title="速度对比"></a>速度对比</h2><p>junction与其他并发Hash库的对比<br><img src="concurrent-map-graph.png" alt=""> </p>
-<h2 id="Turf"><a href="#Turf" class="headerlink" title="Turf"></a>Turf</h2><p>junction依赖于作者自己的另一个<a href="https://github.com/preshing/turf" target="_blank" rel="noopener">Turf</a>库，它提供了很多跨平台（Windows、Ubuntu、OS X、iOS）的API，如线程、原子操作、锁等。</p>
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/preshing/junction-sample.git</div><div class="line">git <span class="built_in">clone</span> https://github.com/preshing/junction.git</div><div class="line">git <span class="built_in">clone</span> https://github.com/preshing/turf.git</div><div class="line"><span class="built_in">cd</span> junction-sample</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake &lt;additional options&gt; ..</div></pre></td></tr></table></figure>
-<h2 id="简单用例"><a href="#简单用例" class="headerlink" title="简单用例"></a>简单用例</h2><p>如下为简单用例，注意Key不可取0或1<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;junction/ConcurrentMap_Grampa.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Foo</span> &#123;</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">testMap</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">typedef</span> junction::ConcurrentMap_Grampa&lt;turf::u32, Foo*&gt; ConcurrentMap;</div><div class="line">    ConcurrentMap myMap;</div><div class="line"></div><div class="line">    myMap.assign(<span class="number">14</span>, <span class="keyword">new</span> Foo);</div><div class="line">    Foo* foo = myMap.get(<span class="number">14</span>);</div><div class="line">    foo = myMap.exchange(<span class="number">14</span>, <span class="keyword">new</span> Foo);</div><div class="line">    <span class="keyword">delete</span> foo;</div><div class="line">    foo = myMap.erase(<span class="number">14</span>);</div><div class="line">    <span class="keyword">delete</span> foo;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    junction::QSBR::Context context = junction::DefaultQSBR.createContext();</div><div class="line">    testMap();</div><div class="line">    junction::DefaultQSBR.update(context);</div><div class="line">    junction::DefaultQSBR.destroyContext(context);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="对比测试"><a href="#对比测试" class="headerlink" title="对比测试"></a>对比测试</h2><p>对于Leapfrog，利用OpenMP实现4线程并发存取1000000个int，结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Leapfrog write:2.17578</div><div class="line">Leapfrog read:1.42871</div><div class="line">Leapfrog write with omp:1.17578</div><div class="line">Leapfrog read with omp:0.547852</div></pre></td></tr></table></figure></p>
-<p>测试代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;junction/ConcurrentMap_Leapfrog.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"omp.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> junction::ConcurrentMap_Leapfrog&lt;turf::u32, <span class="keyword">int</span>*&gt; LeapfrogMap;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">testMap</span><span class="params">()</span> </span>&#123;</div><div class="line">    LeapfrogMap lfmap;</div><div class="line"></div><div class="line">    <span class="keyword">float</span> startTime = omp_get_wtime();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">2</span>+<span class="number">10000000</span>;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* value = <span class="keyword">new</span> <span class="keyword">int</span>(i);</div><div class="line">        lfmap.assign(i, value);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">float</span> endTime = omp_get_wtime();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Leapfrog write:"</span> &lt;&lt; endTime - startTime &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    startTime = omp_get_wtime();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">2</span>+<span class="number">10000000</span>;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* value = lfmap.get(i);</div><div class="line">        *value = i*i;</div><div class="line">        value = lfmap.erase(i);</div><div class="line">        <span class="keyword">delete</span> value;</div><div class="line">    &#125;</div><div class="line">    endTime = omp_get_wtime();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Leapfrog read:"</span> &lt;&lt; endTime - startTime &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">testMap2</span><span class="params">()</span> </span>&#123;</div><div class="line">    LeapfrogMap lfmap;</div><div class="line"></div><div class="line">    <span class="keyword">float</span> startTime = omp_get_wtime();</div><div class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for num_threads(4)</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">2</span>+<span class="number">10000000</span>;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* value = <span class="keyword">new</span> <span class="keyword">int</span>(i);</div><div class="line">        lfmap.assign(i, value);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">float</span> endTime = omp_get_wtime();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Leapfrog write with omp:"</span> &lt;&lt; endTime - startTime &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    startTime = omp_get_wtime();</div><div class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for num_threads(4)</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">2</span>+<span class="number">10000000</span>;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* value = lfmap.get(i);</div><div class="line">        *value = i*i;</div><div class="line">        value = lfmap.erase(i);</div><div class="line">        <span class="keyword">delete</span> value;</div><div class="line">    &#125;</div><div class="line">    endTime = omp_get_wtime();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Leapfrog read with omp:"</span> &lt;&lt; endTime - startTime &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    junction::QSBR::Context context = junction::DefaultQSBR.createContext();</div><div class="line">    testMap();</div><div class="line">    testMap2();</div><div class="line">    junction::DefaultQSBR.update(context);</div><div class="line">    junction::DefaultQSBR.destroyContext(context);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
-<li><a href="https://github.com/preshing/junction" target="_blank" rel="noopener">https://github.com/preshing/junction</a></li>
-<li><a href="http://preshing.com/20160201/new-concurrent-hash-maps-for-cpp" target="_blank" rel="noopener">http://preshing.com/20160201/new-concurrent-hash-maps-for-cpp</a></li>
-</ul>
+<p>执行<code>source /etc/profile</code>或重启以更新系统环境变量</p>
+<p>至此OSG配置完成</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>运行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">osgviewer cow.osgt</div></pre></td></tr></table></figure></p>
+<p>如显示以下图像则为测试成功<br><img src="osg_test.png" alt=""></p>
+<hr>
+<h2 id="osgQT编译"><a href="#osgQT编译" class="headerlink" title="osgQT编译"></a>osgQT编译</h2><h3 id="源代码下载、编译-1"><a href="#源代码下载、编译-1" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/openscenegraph/osgQt" target="_blank" rel="noopener">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -D BUILD_OSG_EXAMPLES=ON ..</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>通过运行编译出来的例子验证是否配置成功</p>
+<hr>
+<h2 id="QT中使用OSG的CMakeLists-txt写法"><a href="#QT中使用OSG的CMakeLists-txt写法" class="headerlink" title="QT中使用OSG的CMakeLists.txt写法"></a>QT中使用OSG的CMakeLists.txt写法</h2><p>并非完整写法，可供参考<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 增加OSG的依赖</span></div><div class="line"><span class="keyword">FIND_PACKAGE</span>(OpenSceneGraph REQUIRED COMPONENTS osgDB osgGA osgUtil osgText osgViewer osgWidget)</div><div class="line">LIST(APPEND INCS_DIR <span class="variable">$&#123;OPENSCENEGRAPH_INCLUDE_DIRS&#125;</span>)</div><div class="line">FILE(GLOB OST_QT_LIB <span class="string">"/usr/local/lib64/libosgQt5.so"</span>)</div><div class="line">LIST(APPEND LIBS <span class="variable">$&#123;OPENSCENEGRAPH_LIBRARIES&#125;</span> <span class="variable">$&#123;OST_QT_LIB&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;INCS_DIR&#125;</span>)</div><div class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(<span class="keyword">Project</span> <span class="variable">$&#123;LIBS&#125;</span>)</div></pre></td></tr></table></figure></p>
+<p>注：CMake中的FIND_PACKAGE(osgQT)测试无效，不清楚是不是版本问题</p>
 
       
     </div>
@@ -484,11 +476,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C++</a>
+            <a href="/article/tags/OSG/" rel="tag"># OSG</a>
           
-            <a href="/tags/Hash/" rel="tag"># Hash</a>
-          
-            <a href="/tags/并行-并发-多线程/" rel="tag"># 并行/并发/多线程</a>
+            <a href="/article/tags/QT/" rel="tag"># QT</a>
           
         </div>
       
@@ -501,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/28/rotation-sampling/" rel="next" title="基于球面均匀采样的旋转变换采样">
-                <i class="fa fa-chevron-left"></i> 基于球面均匀采样的旋转变换采样
+              <a href="/article/2017/hexo-qiniu-image-upload/" rel="next" title="【Hexo】利用七牛qshell工具上传博客图片">
+                <i class="fa fa-chevron-left"></i> 【Hexo】利用七牛qshell工具上传博客图片
               </a>
             
           </div>
@@ -510,6 +500,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2017/osg-compiling-osgworks-and-osgbullet/" rel="prev" title="【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
+                【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -581,7 +575,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.png"
+               src="/article/uploads/avatar.png"
                alt="ZFR" />
           <p class="site-author-name" itemprop="name">ZFR</p>
            
@@ -592,7 +586,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
+              <a href="/article/archives/">
                 <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -603,7 +597,7 @@
             
             
             <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
+              <a href="/article/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -614,7 +608,7 @@
             
             
             <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
+              <a href="/article/tags/index.html">
                 <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -674,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是HashMap"><span class="nav-number">2.</span> <span class="nav-text">什么是HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组和链表"><span class="nav-number">2.1.</span> <span class="nav-text">数组和链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">2.2.</span> <span class="nav-text">HashMap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-并发HashMap"><span class="nav-number">3.</span> <span class="nav-text">C++并发HashMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#junction"><span class="nav-number">4.</span> <span class="nav-text">junction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于junction"><span class="nav-number">4.1.</span> <span class="nav-text">关于junction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#速度对比"><span class="nav-number">4.2.</span> <span class="nav-text">速度对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Turf"><span class="nav-number">4.3.</span> <span class="nav-text">Turf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">4.4.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单用例"><span class="nav-number">4.5.</span> <span class="nav-text">简单用例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比测试"><span class="nav-number">4.6.</span> <span class="nav-text">对比测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSG编译及配置"><span class="nav-number">3.</span> <span class="nav-text">OSG编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译"><span class="nav-number">3.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件配置"><span class="nav-number">3.2.</span> <span class="nav-text">数据文件配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSG环境变量配置"><span class="nav-number">3.3.</span> <span class="nav-text">OSG环境变量配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">3.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgQT编译"><span class="nav-number">4.</span> <span class="nav-text">osgQT编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译-1"><span class="nav-number">4.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-1"><span class="nav-number">4.2.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QT中使用OSG的CMakeLists-txt写法"><span class="nav-number">5.</span> <span class="nav-text">QT中使用OSG的CMakeLists.txt写法</span></a></li></ol></div>
             
 
           </div>
@@ -782,53 +776,53 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/article/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/article/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/article/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/article/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/article/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
+  <script type="text/javascript" src="/article/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/article/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/article/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/article/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/article/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/article/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/article/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/article/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -844,9 +838,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://xiazuomo.com/2018/05/29/concurrent-hash-guide/';
-          this.page.identifier = '2018/05/29/concurrent-hash-guide/';
-          this.page.title = '【junction】C++并发HashMap简介';
+          this.page.url = 'http://xiazuomo.com/2017/osg-compiling-and-configuration/';
+          this.page.identifier = '2017/osg-compiling-and-configuration/';
+          this.page.title = '【OSG】OSG、osgQT编译及配置（Linux/ubuntu）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiazuomo.disqus.com/embed.js';
@@ -888,7 +882,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/" + search_path;
+    var path = "/article/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {

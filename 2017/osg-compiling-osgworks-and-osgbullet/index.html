@@ -37,7 +37,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/article/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -71,48 +71,46 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/article/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="OSG,QT," />
+<link href="/article/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="OSG,Bullet,osgWorks,osgBullet," />
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/article/favicon.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makem">
-<meta name="keywords" content="OSG,QT">
+<meta name="description" content="写在最前面Bullet：物理引擎osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CM">
+<meta name="keywords" content="OSG,Bullet,osgWorks,osgBullet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【OSG】OSG、osgQT编译及配置（Linux&#x2F;ubuntu）">
-<meta property="og:url" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/index.html">
+<meta property="og:title" content="【OSG&#x2F;Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
+<meta property="og:url" content="http://xiazuomo.com/2017/osg-compiling-osgworks-and-osgbullet/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makemake install 数据文件配置数据文件下载：Github链接解压存放，例如">
+<meta property="og:description" content="写在最前面Bullet：物理引擎osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/osg_test.png">
-<meta property="og:updated_time" content="2017-11-14T05:31:56.000Z">
+<meta property="og:updated_time" content="2017-12-01T01:14:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【OSG】OSG、osgQT编译及配置（Linux&#x2F;ubuntu）">
-<meta name="twitter:description" content="写在最前面本文介绍了OSG及osgQT的编译及配置过程  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7  OSG编译及配置源代码下载、编译源代码：Github链接12345mkdir buildcd buildcmake -D BUILD_OSG_EXAMPLES=ON ..makemake install 数据文件配置数据文件下载：Github链接解压存放，例如">
-<meta name="twitter:image" content="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/osg_test.png">
+<meta name="twitter:title" content="【OSG&#x2F;Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
+<meta name="twitter:description" content="写在最前面Bullet：物理引擎osgWorks：一些osg工具osgBullet：基于Bullet的osg物理引擎本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题  系统环境ubuntu: 16.04CMake: 3.5.1OSG: 3.5.7Bullet: 2.87osgWorks">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '/article/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -134,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/"/>
+  <link rel="canonical" href="http://xiazuomo.com/2017/osg-compiling-osgworks-and-osgbullet/"/>
 
 
 
 
 
-  <title>【OSG】OSG、osgQT编译及配置（Linux/ubuntu） | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87） | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -174,7 +172,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/article/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">虾琢磨</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +200,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/article/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -212,7 +210,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/article/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -222,7 +220,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/article/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -232,7 +230,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/article/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -242,7 +240,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/article/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -317,12 +315,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/article/2017/osg-compiling-osgworks-and-osgbullet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZFR">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="image" content="/article/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -334,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【OSG】OSG、osgQT编译及配置（Linux/ubuntu）</h1>
+          <h1 class="post-title" itemprop="name headline">【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）</h1>
         
 
         <div class="post-meta">
@@ -346,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T13:31:56+08:00">
-                2017-11-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T15:47:04+08:00">
+                2017-11-27
               </time>
             
 
@@ -362,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-11-14T13:31:56+08:00">
-                2017-11-14
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-01T09:14:00+08:00">
+                2017-12-01
               </time>
             
           </span>
@@ -381,7 +379,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧/" itemprop="url" rel="index">
+                  <a href="/article/categories/技巧/" itemprop="url" rel="index">
                     <span itemprop="name">技巧</span>
                   </a>
                 </span>
@@ -399,9 +397,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/14/osg-compiling-and-configuration/#comments" itemprop="discussionUrl">
+                <a href="/article/2017/osg-compiling-osgworks-and-osgbullet/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/14/osg-compiling-and-configuration/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/osg-compiling-osgworks-and-osgbullet/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -434,31 +432,34 @@
       
 
       
-        <h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><p>本文介绍了OSG及osgQT的编译及配置过程</p>
+        <h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><p>Bullet：物理引擎<br>osgWorks：一些osg工具<br>osgBullet：基于Bullet的osg物理引擎<br>本文介绍了Bullet、osgWorks及osgBullet编译过程中的一些坑，这两个库最后一次更新都在数年之前，因为年久失修与现有版本的Bullet间有诸多问题</p>
 <hr>
-<h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>ubuntu: 16.04<br>CMake: 3.5.1<br>OSG: 3.5.7</p>
+<h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>ubuntu: 16.04<br>CMake: 3.5.1<br>OSG: 3.5.7<br>Bullet: 2.87<br>osgWorks: 3.0<br>osgBullet: 3.0</p>
 <hr>
-<h2 id="OSG编译及配置"><a href="#OSG编译及配置" class="headerlink" title="OSG编译及配置"></a>OSG编译及配置</h2><h3 id="源代码下载、编译"><a href="#源代码下载、编译" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/openscenegraph/OpenSceneGraph" target="_blank" rel="noopener">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -D BUILD_OSG_EXAMPLES=ON ..</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
-<h3 id="数据文件配置"><a href="#数据文件配置" class="headerlink" title="数据文件配置"></a>数据文件配置</h3><p>数据文件下载：<a href="https://github.com/openscenegraph/OpenSceneGraph-Data" target="_blank" rel="noopener">Github链接</a><br>解压存放，例如<code>/home/&lt;用户名&gt;/Documents/OpenSceneGraph-Data</code></p>
-<h3 id="OSG环境变量配置"><a href="#OSG环境变量配置" class="headerlink" title="OSG环境变量配置"></a>OSG环境变量配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/profile</div></pre></td></tr></table></figure>
-<p>在最末尾加上如下语句<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#OSG</span></div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/usr/<span class="built_in">local</span>/lib64</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/share/OpenSceneGraph/bin</div><div class="line"><span class="built_in">export</span> OSG_FILE_PATH=/home/&lt;用户名&gt;/Documents/OpenSceneGraph-Data</div><div class="line"><span class="built_in">export</span> OSG_DIR=/usr/<span class="built_in">local</span>/lib64</div></pre></td></tr></table></figure></p>
-<p>分别为</p>
-<ul>
-<li>添加OSG库路径到系统共享库路径</li>
-<li>OSG的一些可执行文件路径</li>
-<li>OSG的数据文件路径（根据实际存放位置修改）</li>
-<li>OSG动态链接库路径</li>
-</ul>
+<h2 id="Bullet编译"><a href="#Bullet编译" class="headerlink" title="Bullet编译"></a>Bullet编译</h2><p>源代码：<a href="https://github.com/bulletphysics/bullet3" target="_blank" rel="noopener">Github链接</a><br>下载最新的Release版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake ..</div><div class="line">make</div><div class="line">make install 2&gt;&amp;1 | tee  install.log</div></pre></td></tr></table></figure></p>
+<p>编译完成之后可以尝试一下<code>Example\ExampleBrowser</code><br>这样基本就搞定了，其他编译方式premake什么的没尝试成功</p>
+<hr>
+<h2 id="osgWorks编译及配置"><a href="#osgWorks编译及配置" class="headerlink" title="osgWorks编译及配置"></a>osgWorks编译及配置</h2><h3 id="源代码下载、编译"><a href="#源代码下载、编译" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/mccdo/osgworks" target="_blank" rel="noopener">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake ..</div><div class="line">make</div><div class="line">make install 2&gt;&amp;1 | tee  install.log</div></pre></td></tr></table></figure></p>
+<h3 id="过程中出现的问题及解决办法："><a href="#过程中出现的问题及解决办法：" class="headerlink" title="过程中出现的问题及解决办法："></a>过程中出现的问题及解决办法：</h3><h4 id="1-报错：mgv-mergeGeode-geode"><a href="#1-报错：mgv-mergeGeode-geode" class="headerlink" title="1.报错：mgv.mergeGeode(geode)"></a>1.报错：mgv.mergeGeode(geode)</h4><p>在<code>/src/osgwTools/GeometryModifier.cpp</code>中添加头文件<code>#include &lt;osg/Group&gt;</code><br>将<code>mgv.mergeGeode(geode);</code>修改为<code>mgv.mergeGroup(*geode.asGroup());</code></p>
+<h4 id="2-报错：void-set-value-type-a00-value-type-a01-value-type-a02-value-type-a03"><a href="#2-报错：void-set-value-type-a00-value-type-a01-value-type-a02-value-type-a03" class="headerlink" title="2.报错：void set(value_type a00, value_type a01, value_type a02,value_type a03,"></a>2.报错：void set(value_type a00, value_type a01, value_type a02,value_type a03,</h4><p>在<code>/src/osgwTools/Orientation</code>中将<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">osg::Vec3d Orientation::getYPR( <span class="keyword">const</span> osg::Quat&amp; q ) <span class="keyword">const</span></div><div class="line">&#123;</div><div class="line">    osg::Matrix m;</div><div class="line">    m.<span class="built_in">set</span>( q );</div><div class="line">    <span class="keyword">return</span>( getYPR( m ) );</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> Orientation::getYPR( <span class="keyword">const</span> osg::Quat&amp; q, <span class="keyword">double</span>&amp; yaw, <span class="keyword">double</span>&amp; pitch, <span class="keyword">double</span>&amp; roll ) <span class="keyword">const</span></div><div class="line">&#123;</div><div class="line">    osg::Matrix m;</div><div class="line">    m.<span class="built_in">set</span>( q );</div><div class="line">    getYPR( m, yaw, pitch, roll );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>修改为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">osg::Vec3d Orientation::getYPR( <span class="keyword">const</span> osg::Quat&amp; q ) <span class="keyword">const</span></div><div class="line">&#123;</div><div class="line">    osg::<span class="function">Matrix <span class="title">m</span><span class="params">(q)</span></span>;</div><div class="line">    <span class="keyword">return</span>( getYPR( m ) );</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> Orientation::getYPR( <span class="keyword">const</span> osg::Quat&amp; q, <span class="keyword">double</span>&amp; yaw, <span class="keyword">double</span>&amp; pitch, <span class="keyword">double</span>&amp; roll ) <span class="keyword">const</span></div><div class="line">&#123;</div><div class="line">    osg::<span class="function">Matrix <span class="title">m</span><span class="params">(q)</span></span>;</div><div class="line">    getYPR( m, yaw, pitch, roll );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/profile</div></pre></td></tr></table></figure>
+<p>在最末尾加上如下语句<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#osgWorks</span></div><div class="line"><span class="built_in">export</span> osgWorks_DIR=/usr/<span class="built_in">local</span>/lib</div></pre></td></tr></table></figure></p>
 <p>执行<code>source /etc/profile</code>或重启以更新系统环境变量</p>
-<p>至此OSG配置完成</p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>运行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">osgviewer cow.osgt</div></pre></td></tr></table></figure></p>
-<p>如显示以下图像则为测试成功<br><img src="osg_test.png" alt=""></p>
 <hr>
-<h2 id="osgQT编译"><a href="#osgQT编译" class="headerlink" title="osgQT编译"></a>osgQT编译</h2><h3 id="源代码下载、编译-1"><a href="#源代码下载、编译-1" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/openscenegraph/osgQt" target="_blank" rel="noopener">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -D BUILD_OSG_EXAMPLES=ON ..</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
-<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>通过运行编译出来的例子验证是否配置成功</p>
+<h2 id="osgBullet编译及配置"><a href="#osgBullet编译及配置" class="headerlink" title="osgBullet编译及配置"></a>osgBullet编译及配置</h2><h3 id="源代码下载、编译-1"><a href="#源代码下载、编译-1" class="headerlink" title="源代码下载、编译"></a>源代码下载、编译</h3><p>源代码：<a href="https://github.com/mccdo/osgbullet" target="_blank" rel="noopener">Github链接</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake ..</div><div class="line">make</div><div class="line">make install 2&gt;&amp;1 | tee  install.log</div></pre></td></tr></table></figure></p>
+<h3 id="过程中出现的问题及解决办法：-1"><a href="#过程中出现的问题及解决办法：-1" class="headerlink" title="过程中出现的问题及解决办法："></a>过程中出现的问题及解决办法：</h3><h4 id="1-报错：找不到osgWorks，CMake-Error-at-CMakeModules-FindosgWorks-cmake-39-MESSAGE"><a href="#1-报错：找不到osgWorks，CMake-Error-at-CMakeModules-FindosgWorks-cmake-39-MESSAGE" class="headerlink" title="1.报错：找不到osgWorks，CMake Error at CMakeModules/FindosgWorks.cmake:39 (MESSAGE)"></a>1.报错：找不到osgWorks，CMake Error at CMakeModules/FindosgWorks.cmake:39 (MESSAGE)</h4><p>指定<code>osgWorks_DIR</code>为<code>usr/local/lib</code></p>
+<h4 id="2-报错：无法生成动态链接库"><a href="#2-报错：无法生成动态链接库" class="headerlink" title="2.报错：无法生成动态链接库"></a>2.报错：无法生成动态链接库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/ld: /usr/<span class="built_in">local</span>/lib/libBulletCollision.a(btBoxShape.o): relocation R_X86_64_32S against _ZNK21btConvexInternalShape9getMarginEv can not be used when making a shared object; recompile with -fPIC</div></pre></td></tr></table></figure>
+<p>将<code>BUILD_SHARED_LIBS</code>取消勾选</p>
+<h4 id="3-报错：编译example-patch-lowlevel时报“未定义的引用”错误"><a href="#3-报错：编译example-patch-lowlevel时报“未定义的引用”错误" class="headerlink" title="3.报错：编译example/patch-lowlevel时报“未定义的引用”错误"></a>3.报错：编译example/patch-lowlevel时报“未定义的引用”错误</h4><p>将<code>/examples/CMakeLists.txt</code>中的<code>ADD_SUBDIRECTORY( patch-lowlevel )</code>注释掉</p>
+<h4 id="4-报错：no-matching-function-for-call-to-‘osg-TriangleFunctor-operator-const-Vec3-amp-const-Vec3-amp-const-Vec3-amp-’"><a href="#4-报错：no-matching-function-for-call-to-‘osg-TriangleFunctor-operator-const-Vec3-amp-const-Vec3-amp-const-Vec3-amp-’" class="headerlink" title="4.报错：no matching function for call to ‘osg::TriangleFunctor::operator()(const Vec3&amp;, const Vec3&amp;, const Vec3&amp;)’"></a>4.报错：no matching function for call to ‘osg::TriangleFunctor<osgbcollision::computetrimeshfunc>::operator()(const Vec3&amp;, const Vec3&amp;, const Vec3&amp;)’</osgbcollision::computetrimeshfunc></h4><p>将<code>/usr/local/include/osg/TriangleFunctor</code>中以<code>this-&gt;operator()</code>开头的语句末尾增加一个参数<code>false</code><br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>-&gt;<span class="keyword">operator</span>()(*(vptr),*(vptr+<span class="number">1</span>),*(vptr+<span class="number">2</span>));</div></pre></td></tr></table></figure></p>
+<p>改为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>-&gt;<span class="keyword">operator</span>()(*(vptr),*(vptr+<span class="number">1</span>),*(vptr+<span class="number">2</span>),<span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="环境变量配置-1"><a href="#环境变量配置-1" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/profile</div></pre></td></tr></table></figure>
+<p>在最末尾加上如下语句<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#osgBullet</span></div><div class="line"><span class="built_in">export</span> osgBullet_DIR=/usr/<span class="built_in">local</span>/lib</div></pre></td></tr></table></figure></p>
+<p>执行<code>source /etc/profile</code>或重启以更新系统环境变量</p>
 <hr>
-<h2 id="QT中使用OSG的CMakeLists-txt写法"><a href="#QT中使用OSG的CMakeLists-txt写法" class="headerlink" title="QT中使用OSG的CMakeLists.txt写法"></a>QT中使用OSG的CMakeLists.txt写法</h2><p>并非完整写法，可供参考<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 增加OSG的依赖</span></div><div class="line"><span class="keyword">FIND_PACKAGE</span>(OpenSceneGraph REQUIRED COMPONENTS osgDB osgGA osgUtil osgText osgViewer osgWidget)</div><div class="line">LIST(APPEND INCS_DIR <span class="variable">$&#123;OPENSCENEGRAPH_INCLUDE_DIRS&#125;</span>)</div><div class="line">FILE(GLOB OST_QT_LIB <span class="string">"/usr/local/lib64/libosgQt5.so"</span>)</div><div class="line">LIST(APPEND LIBS <span class="variable">$&#123;OPENSCENEGRAPH_LIBRARIES&#125;</span> <span class="variable">$&#123;OST_QT_LIB&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;INCS_DIR&#125;</span>)</div><div class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(<span class="keyword">Project</span> <span class="variable">$&#123;LIBS&#125;</span>)</div></pre></td></tr></table></figure></p>
-<p>注：CMake中的FIND_PACKAGE(osgQT)测试无效，不清楚是不是版本问题</p>
+<p>以上osgWorks及osgBullet编译安装完毕</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/lyggqm/p/6733423.html" target="_blank" rel="noopener">https://www.cnblogs.com/lyggqm/p/6733423.html</a></p>
 
       
     </div>
@@ -476,9 +477,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OSG/" rel="tag"># OSG</a>
+            <a href="/article/tags/OSG/" rel="tag"># OSG</a>
           
-            <a href="/tags/QT/" rel="tag"># QT</a>
+            <a href="/article/tags/Bullet/" rel="tag"># Bullet</a>
+          
+            <a href="/article/tags/osgWorks/" rel="tag"># osgWorks</a>
+          
+            <a href="/article/tags/osgBullet/" rel="tag"># osgBullet</a>
           
         </div>
       
@@ -491,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/11/hexo-qiniu-image-upload/" rel="next" title="【Hexo】利用七牛qshell工具上传博客图片">
-                <i class="fa fa-chevron-left"></i> 【Hexo】利用七牛qshell工具上传博客图片
+              <a href="/article/2017/osg-compiling-and-configuration/" rel="next" title="【OSG】OSG、osgQT编译及配置（Linux/ubuntu）">
+                <i class="fa fa-chevron-left"></i> 【OSG】OSG、osgQT编译及配置（Linux/ubuntu）
               </a>
             
           </div>
@@ -501,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/27/osg-compiling-osgworks-and-osgbullet/" rel="prev" title="【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）">
-                【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87） <i class="fa fa-chevron-right"></i>
+              <a href="/article/2018/cmake-tips/" rel="prev" title="【CMake】CMake中遇到的问题汇总(持续更新)">
+                【CMake】CMake中遇到的问题汇总(持续更新) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -575,7 +580,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.png"
+               src="/article/uploads/avatar.png"
                alt="ZFR" />
           <p class="site-author-name" itemprop="name">ZFR</p>
            
@@ -586,7 +591,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
+              <a href="/article/archives/">
                 <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -597,7 +602,7 @@
             
             
             <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
+              <a href="/article/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -608,7 +613,7 @@
             
             
             <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
+              <a href="/article/tags/index.html">
                 <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -668,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSG编译及配置"><span class="nav-number">3.</span> <span class="nav-text">OSG编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译"><span class="nav-number">3.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件配置"><span class="nav-number">3.2.</span> <span class="nav-text">数据文件配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSG环境变量配置"><span class="nav-number">3.3.</span> <span class="nav-text">OSG环境变量配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">3.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgQT编译"><span class="nav-number">4.</span> <span class="nav-text">osgQT编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译-1"><span class="nav-number">4.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-1"><span class="nav-number">4.2.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QT中使用OSG的CMakeLists-txt写法"><span class="nav-number">5.</span> <span class="nav-text">QT中使用OSG的CMakeLists.txt写法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bullet编译"><span class="nav-number">3.</span> <span class="nav-text">Bullet编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgWorks编译及配置"><span class="nav-number">4.</span> <span class="nav-text">osgWorks编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译"><span class="nav-number">4.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的问题及解决办法："><span class="nav-number">4.2.</span> <span class="nav-text">过程中出现的问题及解决办法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-报错：mgv-mergeGeode-geode"><span class="nav-number">4.2.1.</span> <span class="nav-text">1.报错：mgv.mergeGeode(geode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-报错：void-set-value-type-a00-value-type-a01-value-type-a02-value-type-a03"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.报错：void set(value_type a00, value_type a01, value_type a02,value_type a03,</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置"><span class="nav-number">4.3.</span> <span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#osgBullet编译及配置"><span class="nav-number">5.</span> <span class="nav-text">osgBullet编译及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码下载、编译-1"><span class="nav-number">5.1.</span> <span class="nav-text">源代码下载、编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的问题及解决办法：-1"><span class="nav-number">5.2.</span> <span class="nav-text">过程中出现的问题及解决办法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-报错：找不到osgWorks，CMake-Error-at-CMakeModules-FindosgWorks-cmake-39-MESSAGE"><span class="nav-number">5.2.1.</span> <span class="nav-text">1.报错：找不到osgWorks，CMake Error at CMakeModules/FindosgWorks.cmake:39 (MESSAGE)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-报错：无法生成动态链接库"><span class="nav-number">5.2.2.</span> <span class="nav-text">2.报错：无法生成动态链接库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-报错：编译example-patch-lowlevel时报“未定义的引用”错误"><span class="nav-number">5.2.3.</span> <span class="nav-text">3.报错：编译example/patch-lowlevel时报“未定义的引用”错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-报错：no-matching-function-for-call-to-‘osg-TriangleFunctor-operator-const-Vec3-amp-const-Vec3-amp-const-Vec3-amp-’"><span class="nav-number">5.2.4.</span> <span class="nav-text">4.报错：no matching function for call to ‘osg::TriangleFunctor::operator()(const Vec3&, const Vec3&, const Vec3&)’</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置-1"><span class="nav-number">5.3.</span> <span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -776,53 +781,53 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/article/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/article/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/article/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/article/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/article/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
+  <script type="text/javascript" src="/article/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/article/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/article/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/article/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/article/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/article/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/article/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/article/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -838,9 +843,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://xiazuomo.com/2017/11/14/osg-compiling-and-configuration/';
-          this.page.identifier = '2017/11/14/osg-compiling-and-configuration/';
-          this.page.title = '【OSG】OSG、osgQT编译及配置（Linux/ubuntu）';
+          this.page.url = 'http://xiazuomo.com/2017/osg-compiling-osgworks-and-osgbullet/';
+          this.page.identifier = '2017/osg-compiling-osgworks-and-osgbullet/';
+          this.page.title = '【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiazuomo.disqus.com/embed.js';
@@ -882,7 +887,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/" + search_path;
+    var path = "/article/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {

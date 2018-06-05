@@ -37,7 +37,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/article/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -71,9 +71,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/article/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/article/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Eigen,点云," />
@@ -85,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/article/favicon.ico?v=5.1.2" />
 
 
 
@@ -96,24 +96,24 @@
 <meta name="keywords" content="Eigen,点云">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于球面均匀采样的旋转变换采样">
-<meta property="og:url" content="http://xiazuomo.com/2018/05/28/rotation-sampling/index.html">
+<meta property="og:url" content="http://xiazuomo.com/2018/rotation-sampling/index.html">
 <meta property="og:site_name" content="虾琢磨">
 <meta property="og:description" content="写在前面在解决点云可见性问题时，需在同一视角（z轴正方向）下将点云绕其中心进行N次旋转变换，同时保证随机性（均匀性），所以需求一种生成N个随机旋转变换的采样方法。可以将求旋转变换的问题转化为对一个$r=1$的单位球面进行均匀采样的问题，因为球面上任意一点可看做是空间向量$\vec{v}(x,y,z)$，再用轴（叉乘产生的法向轴）角法计算与向量$\vec{z}(0,0,1)$间旋转变换，从而得到一些">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xiazuomo.com/2018/05/28/rotation-sampling/fig1.png">
-<meta property="og:image" content="http://xiazuomo.com/2018/05/28/rotation-sampling/fig2.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/rotation-sampling/fig1.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/rotation-sampling/fig2.png">
 <meta property="og:updated_time" content="2018-05-28T07:24:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于球面均匀采样的旋转变换采样">
 <meta name="twitter:description" content="写在前面在解决点云可见性问题时，需在同一视角（z轴正方向）下将点云绕其中心进行N次旋转变换，同时保证随机性（均匀性），所以需求一种生成N个随机旋转变换的采样方法。可以将求旋转变换的问题转化为对一个$r=1$的单位球面进行均匀采样的问题，因为球面上任意一点可看做是空间向量$\vec{v}(x,y,z)$，再用轴（叉乘产生的法向轴）角法计算与向量$\vec{z}(0,0,1)$间旋转变换，从而得到一些">
-<meta name="twitter:image" content="http://xiazuomo.com/2018/05/28/rotation-sampling/fig1.png">
+<meta name="twitter:image" content="http://xiazuomo.com/2018/rotation-sampling/fig1.png">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '/article/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -135,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://xiazuomo.com/2018/05/28/rotation-sampling/"/>
+  <link rel="canonical" href="http://xiazuomo.com/2018/rotation-sampling/"/>
 
 
 
@@ -175,7 +175,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/article/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">虾琢磨</span>
         <span class="logo-line-after"><i></i></span>
@@ -203,7 +203,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/article/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -213,7 +213,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/article/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -223,7 +223,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/article/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -233,7 +233,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/article/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -243,7 +243,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/article/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -318,12 +318,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2018/05/28/rotation-sampling/">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/article/2018/rotation-sampling/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZFR">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="image" content="/article/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -382,7 +382,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
+                  <a href="/article/categories/算法/" itemprop="url" rel="index">
                     <span itemprop="name">算法</span>
                   </a>
                 </span>
@@ -400,9 +400,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/28/rotation-sampling/#comments" itemprop="discussionUrl">
+                <a href="/article/2018/rotation-sampling/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/28/rotation-sampling/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/rotation-sampling/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -475,9 +475,9 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
       
         <div class="post-tags">
           
-            <a href="/tags/Eigen/" rel="tag"># Eigen</a>
+            <a href="/article/tags/Eigen/" rel="tag"># Eigen</a>
           
-            <a href="/tags/点云/" rel="tag"># 点云</a>
+            <a href="/article/tags/点云/" rel="tag"># 点云</a>
           
         </div>
       
@@ -490,7 +490,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/20/cmake-tips/" rel="next" title="【CMake】CMake中遇到的问题汇总(持续更新)">
+              <a href="/article/2018/cmake-tips/" rel="next" title="【CMake】CMake中遇到的问题汇总(持续更新)">
                 <i class="fa fa-chevron-left"></i> 【CMake】CMake中遇到的问题汇总(持续更新)
               </a>
             
@@ -500,7 +500,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/29/concurrent-hash-guide/" rel="prev" title="【junction】C++并发HashMap简介">
+              <a href="/article/2018/concurrent-hash-guide/" rel="prev" title="【junction】C++并发HashMap简介">
                 【junction】C++并发HashMap简介 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -574,7 +574,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.png"
+               src="/article/uploads/avatar.png"
                alt="ZFR" />
           <p class="site-author-name" itemprop="name">ZFR</p>
            
@@ -585,7 +585,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
+              <a href="/article/archives/">
                 <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -596,7 +596,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
             
             
             <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
+              <a href="/article/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -607,7 +607,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
             
             
             <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
+              <a href="/article/tags/index.html">
                 <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -775,53 +775,53 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/article/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/article/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/article/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/article/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/article/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
+  <script type="text/javascript" src="/article/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/article/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/article/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/article/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/article/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/article/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/article/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/article/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -837,8 +837,8 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://xiazuomo.com/2018/05/28/rotation-sampling/';
-          this.page.identifier = '2018/05/28/rotation-sampling/';
+          this.page.url = 'http://xiazuomo.com/2018/rotation-sampling/';
+          this.page.identifier = '2018/rotation-sampling/';
           this.page.title = '基于球面均匀采样的旋转变换采样';
         };
         var d = document, s = d.createElement('script');
@@ -881,7 +881,7 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/" + search_path;
+    var path = "/article/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
