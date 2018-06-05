@@ -9,7 +9,7 @@
     <lastmod>2018-05-29T05:42:48.000Z</lastmod>
     <data>
         <display>
-        <title>【junction】C++并发HashMap简介</title>
+        <title>C++并发Hash库junction简介</title>
         <pubTime>2018-05-29T05:42:48.000Z</pubTime>
         
         <tag>C++</tag>
@@ -55,7 +55,7 @@
     <lastmod>2018-04-20T00:46:06.000Z</lastmod>
     <data>
         <display>
-        <title>【CMake】CMake中遇到的问题汇总(持续更新)</title>
+        <title>CMake中遇到的问题汇总(持续更新)</title>
         <pubTime>2018-04-20T00:46:06.000Z</pubTime>
         
         <tag>Cmake</tag>
@@ -75,7 +75,7 @@
     <lastmod>2017-12-01T01:14:00.000Z</lastmod>
     <data>
         <display>
-        <title>【OSG/Bullet】Bullet、osgWorks、osgBullet编译及安装（适用于最新的OSG-3.5.7，Bullet-2.87）</title>
+        <title>Bullet、osgWorks、osgBullet编译及配置（适用于最新的OSG-3.5.7，Bullet-2.87）</title>
         <pubTime>2017-11-27T07:47:04.000Z</pubTime>
         
         <tag>OSG</tag>
@@ -101,7 +101,7 @@
     <lastmod>2017-11-14T05:31:56.000Z</lastmod>
     <data>
         <display>
-        <title>【OSG】OSG、osgQT编译及配置（Linux/ubuntu）</title>
+        <title>OSG、osgQT编译及配置</title>
         <pubTime>2017-11-14T05:31:56.000Z</pubTime>
         
         <tag>OSG</tag>
@@ -125,7 +125,7 @@
     <lastmod>2017-08-11T01:34:11.000Z</lastmod>
     <data>
         <display>
-        <title>【Hexo】利用七牛qshell工具上传博客图片</title>
+        <title>利用七牛qshell工具上传Hexo博客图片</title>
         <pubTime>2017-08-11T01:34:11.000Z</pubTime>
         
         <tag>hexo</tag>

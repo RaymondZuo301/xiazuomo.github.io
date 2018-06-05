@@ -95,7 +95,7 @@
 <meta name="description" content="写在最前面由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了Junction_Concur">
 <meta name="keywords" content="C++,Hash,并行&#x2F;并发&#x2F;多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【junction】C++并发HashMap简介">
+<meta property="og:title" content="C++并发Hash库junction简介">
 <meta property="og:url" content="http://xiazuomo.com/2018/concurrent-hash-guide/index.html">
 <meta property="og:site_name" content="虾琢磨">
 <meta property="og:description" content="写在最前面由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了Junction_ConcurrentMap库,本文对HashMap、现有C++并发Hash库、Junctio">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://xiazuomo.com/2018/concurrent-hash-guide/concurrent-map-graph.png">
 <meta property="og:updated_time" content="2018-05-29T05:42:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【junction】C++并发HashMap简介">
+<meta name="twitter:title" content="C++并发Hash库junction简介">
 <meta name="twitter:description" content="写在最前面由于一个算法环节的优化中，需要通过Hash表的并发读写来优化速度，而std::map和std::unordered_map并非线程安全，如果一定要用只能加锁，但这样又会有额外消耗，得不偿失。因此需求一个线程安全的并发HashMap，现有的C++库选择并不多比如TBB，偶然间发现了Junction_ConcurrentMap库,本文对HashMap、现有C++并发Hash库、Junctio">
 <meta name="twitter:image" content="http://xiazuomo.com/2018/concurrent-hash-guide/concurrent-map-graph.png">
 
@@ -140,7 +140,7 @@
 
 
 
-  <title>【junction】C++并发HashMap简介 | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>C++并发Hash库junction简介 | 虾琢磨</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【junction】C++并发HashMap简介</h1>
+          <h1 class="post-title" itemprop="name headline">C++并发Hash库junction简介</h1>
         
 
         <div class="post-meta">
@@ -846,7 +846,7 @@
         var disqus_config = function () {
           this.page.url = 'http://xiazuomo.com/2018/concurrent-hash-guide/';
           this.page.identifier = '2018/concurrent-hash-guide/';
-          this.page.title = '【junction】C++并发HashMap简介';
+          this.page.title = 'C++并发Hash库junction简介';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiazuomo.disqus.com/embed.js';
