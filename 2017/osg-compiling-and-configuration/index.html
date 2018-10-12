@@ -916,16 +916,21 @@
 <!-- END LOCAL -->
 
     
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
 
     
       <script type="text/javascript">
-      function renderGitment(){
+      <!-- function renderGitment(){ -->
         var gitment = new Gitmint({
             id: 'OSG、osgQT编译及配置',
             owner: 'zfrxiaxia',
             repo: 'zfrxiaxia.github.io',
             
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            <!-- lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage, -->
             
             oauth: {
             
@@ -935,10 +940,10 @@
                 client_id: '860e9aee0455e25dc315'
             }});
         gitment.render('gitment-container');
-      }
+      <!-- } -->
 
       
-      renderGitment();
+      <!-- renderGitment(); -->
       
       </script>
     
