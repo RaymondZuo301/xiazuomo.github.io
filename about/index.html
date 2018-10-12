@@ -727,32 +727,34 @@
 <!-- LOCAL: You can save these files to your site and update links -->
     
         
-        <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-        <script src="https://jjeejj.github.io/js/gitment.js"></script>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     
 <!-- END LOCAL -->
 
     
-      <style>
-        a.gitment-editor-footer-tip { display: none; }
-        .gitment-container.gitment-footer-container { display: none; }
-      </style>
-    
 
     
       <script type="text/javascript">
-        var gitment = new Gitmint({
+      function renderGitment(){
+        var gitment = new Gitment({
             id: '关于',
             owner: 'zfrxiaxia',
             repo: 'zfrxiaxia.github.io',
+            
             oauth: {
+            
+            
                 client_secret: '39c91557dff9d99b145169a574d090ab21ee0bce',
+            
                 client_id: '860e9aee0455e25dc315'
             }});
         gitment.render('gitment-container');
+      }
 
+      
       renderGitment();
-
+      
       </script>
     
 
