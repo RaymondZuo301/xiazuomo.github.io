@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiazuomo.com/2018/linear-algebra-library/</loc>
+    
+    <lastmod>2018-10-12T02:35:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiazuomo.com/2018/bounding-box/</loc>
+    
+    <lastmod>2018-06-22T07:26:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiazuomo.com/about/index.html</loc>
     
     <lastmod>2018-05-29T06:07:36.250Z</lastmod>
@@ -44,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://xiazuomo.com/categories/index.html</loc>
+    <loc>http://xiazuomo.com/tags/index.html</loc>
     
     <lastmod>2017-11-06T06:30:33.902Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xiazuomo.com/tags/index.html</loc>
+    <loc>http://xiazuomo.com/categories/index.html</loc>
     
     <lastmod>2017-11-06T06:30:33.902Z</lastmod>
     

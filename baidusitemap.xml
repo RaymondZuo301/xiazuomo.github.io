@@ -3,6 +3,50 @@
 
 
     
+  <url>
+    <loc>http://xiazuomo.com/2018/linear-algebra-library/</loc>
+    <lastmod>2018-10-12T02:35:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>线性代数库调研</title>
+        <pubTime>2018-10-12T02:35:40.000Z</pubTime>
+        
+        <tag>Eigen</tag>
+         
+        <tag>MKL</tag>
+         
+        <tag>线性代数</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习" url="http://xiazuomo.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xiazuomo.com/2018/bounding-box/</loc>
+    <lastmod>2018-06-22T07:26:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bounding-box包围盒算法</title>
+        <pubTime>2018-06-22T07:26:25.000Z</pubTime>
+        
+        <tag>点云</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://xiazuomo.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://xiazuomo.com/2018/concurrent-hash-guide/</loc>
@@ -36,9 +80,9 @@
         <title>基于球面均匀采样的旋转变换采样</title>
         <pubTime>2018-05-28T07:24:43.000Z</pubTime>
         
-        <tag>Eigen</tag>
-         
         <tag>点云</tag>
+         
+        <tag>Eigen</tag>
          
          
            
