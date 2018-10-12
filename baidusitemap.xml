@@ -1,166 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
     <loc>http://xiazuomo.com/2018/linear-algebra-library/</loc>
     <lastmod>2018-10-12T02:35:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>线性代数库调研</title>
-        <pubTime>2018-10-12T02:35:40.000Z</pubTime>
-        
-        <tag>Eigen</tag>
-         
-        <tag>MKL</tag>
-         
-        <tag>线性代数</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习" url="http://xiazuomo.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
+  </url>  <url>
     <loc>http://xiazuomo.com/2018/concurrent-hash-guide/</loc>
     <lastmod>2018-05-29T05:42:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>C++并发Hash库junction简介</title>
-        <pubTime>2018-05-29T05:42:48.000Z</pubTime>
-        
-        <tag>C++</tag>
-         
-        <tag>Hash</tag>
-         
-        <tag>并行/并发/多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://xiazuomo.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://xiazuomo.com/2018/rotation-sampling/</loc>
     <lastmod>2018-05-28T07:24:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>基于球面均匀采样的旋转变换采样</title>
-        <pubTime>2018-05-28T07:24:43.000Z</pubTime>
-        
-        <tag>点云</tag>
-         
-        <tag>Eigen</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://xiazuomo.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://xiazuomo.com/2018/cmake-tips/</loc>
     <lastmod>2018-04-20T00:46:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>CMake中遇到的问题汇总(持续更新)</title>
-        <pubTime>2018-04-20T00:46:06.000Z</pubTime>
-        
-        <tag>Cmake</tag>
-         
-         
-           
-             
-              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://xiazuomo.com/2017/osg-compiling-osgworks-and-osgbullet/</loc>
     <lastmod>2017-12-01T01:14:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Bullet、osgWorks、osgBullet编译及配置（适用于最新的OSG-3.5.7，Bullet-2.87）</title>
-        <pubTime>2017-11-27T07:47:04.000Z</pubTime>
-        
-        <tag>OSG</tag>
-         
-        <tag>Bullet</tag>
-         
-        <tag>osgWorks</tag>
-         
-        <tag>osgBullet</tag>
-         
-         
-           
-             
-              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://xiazuomo.com/2017/osg-compiling-and-configuration/</loc>
     <lastmod>2017-11-14T05:31:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>OSG、osgQT编译及配置</title>
-        <pubTime>2017-11-14T05:31:56.000Z</pubTime>
-        
-        <tag>OSG</tag>
-         
-        <tag>QT</tag>
-         
-         
-           
-             
-              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
+  </url>  <url>
     <loc>http://xiazuomo.com/2017/hexo-qiniu-image-upload/</loc>
     <lastmod>2017-08-11T01:34:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>利用七牛qshell工具上传Hexo博客图片</title>
-        <pubTime>2017-08-11T01:34:11.000Z</pubTime>
-        
-        <tag>hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="技巧" url="http://xiazuomo.com/categories/%E6%8A%80%E5%B7%A7/"/>
-          
-        </display>
-    </data>
-    </url>
-
+  </url>
 </urlset>

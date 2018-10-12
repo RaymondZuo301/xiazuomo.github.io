@@ -108,7 +108,7 @@
 
 
 
-  <meta name="description" content="编译动态库B时提示被链接的A库需用“-fPIC”重新编译错误：can not be used when making a shared object; recompile with -fPIC解决：重新编译A库12add_library( A $&amp;#123;SRC&amp;#125;)set_property(">
+  <meta name="description" content="编译动态库B时提示被链接的A库需用“-fPIC”重新编译错误：can not be used when making a shared object; recompile with -fPIC解决：重新编译A库12add_library( A $&amp;#123;SRC&amp;#125;)set_property(TARGET A PROPERTY POSITION_INDEPENDENT_CODE ON)">
 <meta name="keywords" content="Cmake">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMake中遇到的问题汇总(持续更新)">
@@ -462,7 +462,7 @@
       
 
       
-        <h2 id="编译动态库B时提示被链接的A库需用“-fPIC”重新编译"><a href="#编译动态库B时提示被链接的A库需用“-fPIC”重新编译" class="headerlink" title="编译动态库B时提示被链接的A库需用“-fPIC”重新编译"></a>编译动态库B时提示被链接的A库需用“-fPIC”重新编译</h2><p>错误：can not be used when making a shared object; recompile with -fPIC<br>解决：重新编译A库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add_library( A $&#123;SRC&#125;)</div><div class="line">set_property(TARGET A PROPERTY POSITION_INDEPENDENT_CODE ON)</div></pre></td></tr></table></figure></p>
+        <h2 id="编译动态库B时提示被链接的A库需用“-fPIC”重新编译"><a href="#编译动态库B时提示被链接的A库需用“-fPIC”重新编译" class="headerlink" title="编译动态库B时提示被链接的A库需用“-fPIC”重新编译"></a>编译动态库B时提示被链接的A库需用“-fPIC”重新编译</h2><p>错误：can not be used when making a shared object; recompile with -fPIC<br>解决：重新编译A库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add_library( A $&#123;SRC&#125;)</span><br><span class="line">set_property(TARGET A PROPERTY POSITION_INDEPENDENT_CODE ON)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -742,7 +742,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.2</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
