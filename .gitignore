@@ -4,3 +4,5 @@
 yulib\.resource/
 
 yulib\.config
+
+node_modules/
