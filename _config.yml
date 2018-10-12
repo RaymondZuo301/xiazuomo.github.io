@@ -89,7 +89,7 @@ deploy:
   type: git
   repository:
     github: git@github.com:zfrxiaxia/zfrxiaxia.github.io.git
-    coding: git@git.coding.net:/zfrxiaxia/zfrxiaxia.coding.me.git
+#    coding: git@git.coding.net:/zfrxiaxia/zfrxiaxia.coding.me.git
   branch: master
 
 # 搜索
