@@ -260,14 +260,6 @@
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-schedule">
-    <a href="/schedule/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
-  </li>
 
       
       
@@ -424,9 +416,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/linear-algebra-library/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/linear-algebra-library/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/linear-algebra-library/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -614,12 +604,9 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
 
   
@@ -965,34 +952,50 @@
 
   
 
-  
-    <script id="dsq-count-scr" src="https://xiazuomo.disqus.com/count.js" async></script>
-  
+
 
   
-    <script type="text/javascript">
-      var disqus_config = function () {
-        this.page.url = 'http://xiazuomo.com/2018/linear-algebra-library/';
-        this.page.identifier = '2018/linear-algebra-library/';
-        this.page.title = '线性代数库调研';
-        };
-      function loadComments () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://xiazuomo.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'zfrxiaxia',
+            repo: 'zfrxiaxia.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '39c91557dff9d99b145169a574d090ab21ee0bce',
+            
+                client_id: '860e9aee0455e25dc315'
+            }});
+        gitment.render('gitment-container');
       }
+
       
-        loadComments();
+      renderGitment();
       
-    </script>
-  
-
-
-
-
-
-
+      </script>
+    
 
 
 
