@@ -7,7 +7,7 @@
     {% else %}
         {% set CommentsClass = "Gitment" %}
         <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
     {% endif %}
 <!-- END LOCAL -->
 
@@ -22,7 +22,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new {{CommentsClass}}({
-            id: '{{page.title}}',
+            id: '{{page.date}}',
             owner: '{{ theme.gitment.github_user }}',
             repo: '{{ theme.gitment.github_repo }}',
             {% if theme.gitment.mint %}
