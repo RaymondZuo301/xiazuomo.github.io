@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Reflexxes运动规划库简介]]></title>
+    <url>%2F2018%2Freflexxes-motion-library-intro%2F</url>
+    <content type="text"><![CDATA[Reflexxes运动规划库简介概述Reflexxes（全称为Reflexxes Motion Library，简称RML）是一个开源（Type-II开源， Type-IV商业库）的在线运动轨迹生成库，具有众多优点使其可以应用于机器人、数控机床和伺服驱动系统等领域，V-REP中集成了RML-Type-IV,目前Reflexxes公司已经被谷歌收购。 Reflexxes算法库结构概述基本结构如下 Type-II和Type-IV相差加加速度的边界条件和加速度输出 Reflexxes的在线轨迹生成算法主要分为以下三步： Step 1: 计算同步时间 Step 2: 同步所选的轴 Step 3: 计算输出数值 由于仅有Type-II开源以下仅涉及Type-II相关内容 接口层 ReflexxesAPI是唯一的用户接口类非常紧凑，用它的两个方法ReflexxesAPI::RMLPosition来执行基于位置的在线轨迹生成算法和ReflexxesAPI::RMLVelocity用于基于速度的算法 RMLInputParameters：包含RMLPositionInputParameters和RMLVelocityInputParameters，用于输入参数 RMLOutputParameters：包含RMLPositionOutputParameters和RMLVelocityOutputParameters，用于输出参数 RMLFlags包含：RMLPositionFlags和RMLVelocityFlags，用于在线轨迹规划算法的参数化标记，如同步方式（无同步non-synchronized、时间同步time-synchronized、相位同步phase-synchronized）等 RMLVector：数组类 算法层包含实际的Type-II在线轨迹生成算法，提供给ReflexxesAPI使用，其中包含了数学层中提供的决策树TypeIIRMLDecisionTree TypeIIRMLPosition：ReflexxesAPI::RMLPosition，实际调用的是TypeIIRMLPosition::GetNextStateOfMotion TypeIIRMLVelocity：ReflexxesAPI::RMLVelocity，实际调用的是TypeIIRMLVelocity::GetNextStateOfMotion 数学层TypeIIRMLPosition和TypeIIRMLVelocity类所需的数学函数集合，包含： TypeIIRMLMath::MotionPolynomials：三个TypeIIRMLPolynomial数组（Pos、Vel、Acc） TypeIIRMLMath::TypeIIRMLPolynomial：三阶多项式 示例代码基本的三轴规划示例代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#define CYCLE_TIME_IN_SECONDS 0.001#define NUMBER_OF_DOFS 3int main()&#123;// 变量声明 int ResultValue = 0 ; ReflexxesAPI *RML = NULL ; RMLPositionInputParameters *IP = NULL ; RMLPositionOutputParameters *OP = NULL ; RMLPositionFlags Flags ;// 初始化 RML = new ReflexxesAPI(NUMBER_OF_DOFS, CYCLE_TIME_IN_SECONDS); IP = new RMLPositionInputParameters(NUMBER_OF_DOFS); OP = new RMLPositionOutputParameters(NUMBER_OF_DOFS);// 输入参数 IP-&gt;CurrentPositionVector-&gt;VecData [0] = 100.0 ; IP-&gt;CurrentPositionVector-&gt;VecData [1] = 0.0 ; IP-&gt;CurrentPositionVector-&gt;VecData [2] = 50.0 ; IP-&gt;CurrentVelocityVector-&gt;VecData [0] = 100.0 ; IP-&gt;CurrentVelocityVector-&gt;VecData [1] = -220.0 ; IP-&gt;CurrentVelocityVector-&gt;VecData [2] = -50.0 ; IP-&gt;CurrentAccelerationVector-&gt;VecData [0] = -150.0 ; IP-&gt;CurrentAccelerationVector-&gt;VecData [1] = 250.0 ; IP-&gt;CurrentAccelerationVector-&gt;VecData [2] = -50.0 ; IP-&gt;MaxVelocityVector-&gt;VecData [0] = 300.0 ; IP-&gt;MaxVelocityVector-&gt;VecData [1] = 100.0 ; IP-&gt;MaxVelocityVector-&gt;VecData [2] = 300.0 ; IP-&gt;MaxAccelerationVector-&gt;VecData [0] = 300.0 ; IP-&gt;MaxAccelerationVector-&gt;VecData [1] = 200.0 ; IP-&gt;MaxAccelerationVector-&gt;VecData [2] = 100.0 ; IP-&gt;MaxJerkVector-&gt;VecData [0] = 400.0 ; IP-&gt;MaxJerkVector-&gt;VecData [1] = 300.0 ; IP-&gt;MaxJerkVector-&gt;VecData [2] = 200.0 ; IP-&gt;TargetPositionVector-&gt;VecData [0] = -600.0 ; IP-&gt;TargetPositionVector-&gt;VecData [1] = -200.0 ; IP-&gt;TargetPositionVector-&gt;VecData [2] = -350.0 ; IP-&gt;TargetVelocityVector-&gt;VecData [0] = 50.0 ; IP-&gt;TargetVelocityVector-&gt;VecData [1] = -50.0 ; IP-&gt;TargetVelocityVector-&gt;VecData [2] = -200.0 ; IP-&gt;SelectionVector-&gt;VecData [0] = true ; IP-&gt;SelectionVector-&gt;VecData [1] = true ; IP-&gt;SelectionVector-&gt;VecData [2] = true ;// 迭代运算 while (ResultValue != ReflexxesAPI::RML_FINAL_STATE_REACHED) &#123;// 获取下一周期状态 ResultValue = RML-&gt;RMLPosition(*IP, OP, Flags);// 更新当前状态 *IP-&gt;CurrentPositionVector = *OP-&gt;NewPositionVector ; *IP-&gt;CurrentVelocityVector = *OP-&gt;NewVelocityVector ; *IP-&gt;CurrentAccelerationVector = *OP-&gt;NewAccelerationVector ; &#125; delete RML ; delete IP ; delete OP ; exit(EXIT_SUCCESS) ;&#125; 参考 https://www.cnblogs.com/21207-iHome/p/6344467.html http://www.reflexxes.ws/software/typeiirml/v1.2.6/docs/index.html]]></content>
+      <categories>
+        <category>机器人</category>
+      </categories>
+      <tags>
+        <tag>机器人</tag>
+        <tag>Reflexxes</tag>
+        <tag>运动规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[KDL运动学动力学库类结构、接口整理]]></title>
+    <url>%2F2018%2Fkdl-class-hierarchy%2F</url>
+    <content type="text"><![CDATA[KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Kinematic Trees运动学结构数据类型Joint关节Joint = JointType + Scale(输入输出比) + Offset(reference-&gt;joint)+非必要（Inertia惯量+Damping阻尼+Stiffness刚度）JointType = {RotAxis,RotX,RotY,RotZ,TransAxis,TransX,TransY,TransZ,None} RigidBodyInertia刚体惯量RigidBodyInertia = 质量+重力矩V3+转动惯量M3*3 Segment杆件Segment = Joint + RigidBodyInertia + Frame_reference + Frame_tip Chain无分支运动链Chain = Vector(Segment) 算法 基类 SolverI：solver interface用来存储和描述最近一次错误 正运动学 ChainFkSolverPos继承自SolverI：Chain的正运动学接口 ChainFkSolverPos_recursive继承自ChainFkSolverPos：递归fk ChainFkSolverVel_recursive继承自ChainFkSolverPos：递归fk-vel 例：ChainFkSolverPos_recursive接口 构造函数ChainFkSolverPos_recursive(const Chain&amp; chain) 接口virtual int JntToCart(const JntArray&amp; q_in, Frame&amp; p_out, int segmentNr=-1)、virtual int JntToCart(const JntArray&amp; q_in, std::vector&lt;Frame&gt;&amp; p_out, int segmentNr=-1); 逆运动学 ChainIkSolverPos继承自SolverI：Chain的逆运动学接口 ChainIkSolverPos_LMA继承自ChainIkSolverPos：逆运动学——莱文贝格-马夸特，Levenberg-Marquardt ChainIkSolverPos_NR：逆运动学——牛顿-拉夫森，Newton-Raphson ChainIkSolverPos_NR_JL：逆运动学——牛顿-拉夫森带关节限位，Newton-Raphson with joint limits ChainIkSolverVel_pinv继承自ChainIkSolverPos：ik-vel——广义伪逆，generalize pseudo inverse ChainIkSolverVel_pinv_nso：ik-vel——广义伪逆（冗余机器人优化） ChainIkSolverVel_pinv_givens：ik-vel——广义伪逆（Givens） ChainIkSolverVel_wdls：ik-vel——加权伪逆（阻尼最小二乘） 例：ChainIkSolverPos_LMA接口 构造函数 123456789101112ChainIkSolverPos_LMA( const KDL::Chain&amp; _chain, const Eigen::Matrix&lt;double,6,1&gt;&amp; _L, double _eps=1E-5, int _maxiter=500, double _eps_joints=1E-15); ChainIkSolverPos_LMA( const KDL::Chain&amp; _chain, double _eps=1E-5, int _maxiter=500, double _eps_joints=1E-15); 接口 1virtual int CartToJnt(const KDL::JntArray&amp; q_init, const KDL::Frame&amp; T_base_goal, KDL::JntArray&amp; q_out);]]></content>
+      <categories>
+        <category>机器人</category>
+      </categories>
+      <tags>
+        <tag>KDL</tag>
+        <tag>运动学</tag>
+        <tag>ROS</tag>
+        <tag>机器人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[KDL运动学动力学库简介]]></title>
+    <url>%2F2018%2Fkdl-intro%2F</url>
+    <content type="text"><![CDATA[KDL运动学动力学库简介前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 Rotation2： $cos\theta$，$sin\theta$，旋转矩阵 Frame2：Vector2+Rotation2，变换矩阵 Kinematic Trees运动学结构数据类型 Tree：开链机构，树 Chain：无分支的运动链 Chain和Tree都由最基本的Segments元素串接而成，Segment可以理解为机构运动链上的一个运动部件。如下图所示Segment包含关节Joint以及部件的质量/惯性属性RigidBodyInertia，并且定义了一个参考坐标系Freference和末端坐标系Ftip。 末端到关节坐标系的转换由Ttip描述。在一个运动链或树中，子部件会被添加到父部件的末端，因此上一个部件的Ftip就是下一个部件的参考坐标系Freference (tip frame of parent = reference frame of the child)。通常Fjoint和Freference是重合的，但是也可以存在偏移。 运动学算法框架以下均为Chain相关运动学算法类 基类 SolverI：solver interface用来存储和描述最近一次错误 正运动学 ChainFkSolverPos继承自SolverI：Chain的正运动学接口 ChainFkSolverPos_recursive继承自ChainFkSolverPos：递归fk ChainFkSolverVel_recursive继承自ChainFkSolverPos：递归fk-vel 逆运动学 ChainIkSolverPos继承自SolverI：Chain的逆运动学接口 ChainIkSolverPos_LMA继承自ChainIkSolverPos：逆运动学——莱文贝格-马夸特，Levenberg-Marquardt ChainIkSolverPos_NR：逆运动学——牛顿-拉夫森，Newton-Raphson ChainIkSolverPos_NR_JL：逆运动学——牛顿-拉夫森带关节限位，Newton-Raphson with joint limits ChainIkSolverVel_pinv继承自ChainIkSolverPos：ik-vel——广义伪逆，generalize pseudo inverse ChainIkSolverVel_pinv_nso：ik-vel——广义伪逆（冗余机器人优化） ChainIkSolverVel_pinv_givens：ik-vel——广义伪逆（Givens） ChainIkSolverVel_wdls：ik-vel——加权伪逆（阻尼最小二乘） 参考 https://www.cnblogs.com/21207-iHome/p/8312854.html http://www.orocos.org/kdl]]></content>
+      <categories>
+        <category>机器人</category>
+      </categories>
+      <tags>
+        <tag>KDL</tag>
+        <tag>运动学</tag>
+        <tag>ROS</tag>
+        <tag>机器人</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线性代数库调研]]></title>
     <url>%2F2018%2Flinear-algebra-library%2F</url>
     <content type="text"><![CDATA[线性代数库调研前言本文罗列了线性代数库/API相关的内容，包含基本数学库/API和高级数学库相关内容，以及他们之间的对比，可跳过前面直接阅读“线性代数库选用”相关内容。 基本数学库/APIBLAS简介：基本线性代数子程序，Basic Linear Algebra Subprograms，是一个API标淮，用以规范发布基础线性代数操作的数值库（如矢量或矩阵乘法）。Netlib用Fortran实现了BLAS的这些API接口，得到的库也叫做BLAS。Netlib只是一般性地实现了基本功能，并没有对运算做过多的优化。在高性能计算领域，BLAS被广泛使用。为提高性能，各软硬件厂商则针对其产品对BLAS接口实现进行高度最佳化。 参考链接： http://www.netlib.org/blas/ https://zh.wikipedia.org/wiki/BLAS LAPACK简介：线性代数库，也是Netlib用fortran语言编写的，其底层是BLAS。LAPACK提供了丰富的工具函式，可用于诸如解多元线性方程式、线性系统方程组的最小平方解、计算特徵向量、用于计算矩阵QR分解的Householder转换、以及奇异值分解等问题。该库的运行效率比BLAS库高。从某个角度讲，LAPACK也可以称作是一组科学计算（矩阵运算）的接口规范。Netlib实现了这一组规范的功能，得到的这个库叫做LAPACK库。 参考链接 http://www.netlib.org/lapack/ https://zh.wikipedia.org/wiki/LAPACK ScaLAPACK简介：ScaLAPACK（Scalable LAPACK 简称）是一个并行计算软件包，适用于分布式存储的 MIMD （multiple instruction, multiple data）并行计算机。它是采用消息传递机制实现处理器/进程间通信，因此使用起来和编写传统的 MPI 程序比较类似。ScaLAPACK 主要针对密集和带状线性代数系统，提供若干线性代数求解功能，如各种矩阵运算，矩阵分解，线性方程组求解，最小二乘问题，本征值问题，奇异值问题等，具有高效、可移植、可伸缩、高可靠性等优点，利用它的求解库可以开发出基于线性代数运算的并行应用程序。 参考链接 http://www.netlib.org/scalapack/index.html https://blog.csdn.net/zuoshifan/article/details/80273198 高级数学库MKL简介：英特尔MKL基于英特尔® C++和Fortran编译器构建而成，并使用OpenMP*实现了线程化。该函数库的算法能够平均分配数据和任务，充分利用多个核心和处理器。支持Linux/Win。 底层： BLAS：所有矩阵间运算（三级）均面向密集和稀疏 BLAS 实现了线程化。 许多矢量间运算（一级）和矩阵与矢量的运算（二级）均面向英特尔® 64 架构上 64 位程序中的密集型矩阵实现了线程化。 对于稀疏矩阵，除三角形稀疏矩阵解算器外的所有二级运算均实现了线程化。 LAPACK：部分计算例程针对以下某类型的问题实现了线程化：线性方程解算器、正交因子分解、单值分解和对称特征值问题。 LAPACK 也调用 BLAS，因此即使是非线程化函数也可能并行运行。 ScaLAPACK：面向集群的 LAPACK 分布式内存并行版本。 PARDISO：该并行直接稀疏矩阵解算器的三个阶段均实现了线程化：重新排序（可选）、因子分解和解算（如果采用多个右侧项）。 DFTs：离散傅立叶变换 VML：矢量数学库 VSL：矢量统计学库 参考资料： https://software.intel.com/es-es/node/699485 http://www.docin.com/p-1907272173.html Armadillo简介：使用模板元编程技术，与Matlab相似，易于使用的C++矩阵库，提供高效的 LAPACK, BLAS和ATLAS封装包，包含了 Intel MKL, AMD ACM和 OpenBLAS等诸多高性能版本。 底层： BLAS/LAPACK：支持OpenBLAS、ACML、MKL 参考链接： http://arma.sourceforge.net/ https://en.wikipedia.org/wiki/Armadillo_(C%2B%2B_library) Eigen简介：Eigen是可以用来进行线性代数、矩阵、向量操作等运算的C++库，它里面包含了很多算法。它支持多平台。Eigen采用源码的方式提供给用户使用，在使用时只需要包含Eigen的头文件即可进行使用。之所以采用这种方式，是因为Eigen采用模板方式实现，由于模板函数不支持分离编译，所以只能提供源码而不是动态库的方式供用户使用。 底层： BLAS/LAPACK：支持所有基于F77的BLAS或LAPACK库作为底层（EIGEN_USE_BLAS、EIGEN_USE_LAPACKE） MKL：支持MKL作为底层（EIGEN_USE_MKL_ALL） CUDA：支持在CUDA kernels里使用CUDA OpenMP：多线程优化 参考链接 http://eigen.tuxfamily.org/index.php?title=Main_Page http://eigen.tuxfamily.org/dox/TopicUsingBlasLapack.html http://eigen.tuxfamily.org/dox/TopicUsingIntelMKL.html 线性代数库选用关系 狭义的BLAS/LAPACK可理解为用于线性代数运算库的API Netlib实现了Fortran/C版的BLAS/LAPACK、CBLAS/CLAPACK 开源社区及商业公司针对API实现了BLAS（ATLAS、OpenBLAS）和LAPACK（MKL、ACML、CUBLAS）的针对性优化 Eigen、Armadillo除自身实现线性代数运算库外还支持上述各种BLAS/LAPACK为基础的底层以加速运算 对比 备选：MKL、OpenBLAS、Eigen、Armadillo 接口易用程度：Eigen &gt; Armadillo &gt; MKL/OpenBLAS 速度：MKL≈OpenBLAS &gt; Eigen(with MKL) &gt; Eigen &gt; Armadillo 其中： OpenBLAS没有单核版本，强行指定OMP_NUM_THREADS=1性能损失大，不考虑 MKL直接使用学习成本较高，但是性能最强 Armadillo效率和接口易用性不如Eigen Eigen的原生BLAS/LAPACK实现速度不如MKL、OpenBLAS，但是使用MKL做后台性能和MKL原生几乎一样，所以可以视情况决定是否使用MKL 参考资料 blas、lapack和atlas、openblas的区别联系 比较OpenBLAS，Intel MKL和Eigen的矩阵相乘性能 Eigen、OpenCV、Armadillo对比 更多线性代数库的对比]]></content>
       <categories>
-        <category>学习</category>
+        <category>算法</category>
       </categories>
       <tags>
         <tag>Eigen</tag>
@@ -34,8 +75,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>点云</tag>
         <tag>Eigen</tag>
+        <tag>点云</tag>
       </tags>
   </entry>
   <entry>

@@ -108,23 +108,33 @@
 
 
 
-  <meta name="description" content="用代码做有意思的事情">
-<meta property="og:type" content="website">
-<meta property="og:title" content="虾琢磨">
-<meta property="og:url" content="http://xiazuomo.com/categories/学习/index.html">
+  <meta name="description" content="KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = J">
+<meta name="keywords" content="KDL,运动学,ROS,机器人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KDL运动学动力学库类结构、接口整理">
+<meta property="og:url" content="http://xiazuomo.com/2018/kdl-class-hierarchy/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="用代码做有意思的事情">
+<meta property="og:description" content="KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = J">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Joint.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-RigidBodyInert.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Segment.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Chain.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Solver.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-ChainFkSolverPos.png">
+<meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-ChainIkSolverPos.png">
+<meta property="og:updated_time" content="2018-10-17T00:54:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虾琢磨">
-<meta name="twitter:description" content="用代码做有意思的事情">
+<meta name="twitter:title" content="KDL运动学动力学库类结构、接口整理">
+<meta name="twitter:description" content="KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = J">
+<meta name="twitter:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Joint.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xiazuomo.com/categories/学习/"/>
+  <link rel="canonical" href="http://xiazuomo.com/2018/kdl-class-hierarchy/"/>
 
 
 
@@ -134,7 +144,7 @@
   };
 </script>
 
-  <title>分类: 学习 | 虾琢磨</title>
+  <title>KDL运动学动力学库类结构、接口整理 | 虾琢磨</title>
   
 
 
@@ -181,7 +191,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,7 +256,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
   </li>
@@ -318,85 +328,293 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>学习<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2018/kdl-class-hierarchy/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Raymond.Z">
+      <meta itemprop="description" content="用代码做有意思的事情">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾琢磨">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/linear-algebra-library/" itemprop="url">
-              
-                <span itemprop="name">线性代数库调研</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">KDL运动学动力学库类结构、接口整理
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-12T10:35:40+08:00"
-              content="2018-10-12" >
-          10-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-17 08:54:46" itemprop="dateCreated datePublished" datetime="2018-10-17T08:54:46+08:00">2018-10-17</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器人/" itemprop="url" rel="index"><span itemprop="name">机器人</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2k</span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="KDL运动学动力学库类结构、接口整理"><a href="#KDL运动学动力学库类结构、接口整理" class="headerlink" title="KDL运动学动力学库类结构、接口整理"></a>KDL运动学动力学库类结构、接口整理</h1><h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
+<li>Vector：double[3]，3维向量</li>
+<li>Rotation：double[9]，3*3矩阵</li>
+<li>Frame：Vector+Rotation，变换矩阵</li>
+<li>Twist：Vector(平移速度)+Vector(旋转速度)</li>
+<li>Wrench：Vector(力)+Vector(转矩)</li>
+</ul>
+<h2 id="Kinematic-Trees运动学结构数据类型"><a href="#Kinematic-Trees运动学结构数据类型" class="headerlink" title="Kinematic Trees运动学结构数据类型"></a>Kinematic Trees运动学结构数据类型</h2><h3 id="Joint关节"><a href="#Joint关节" class="headerlink" title="Joint关节"></a>Joint关节</h3><p>Joint = JointType + Scale(输入输出比) + Offset(reference-&gt;joint)+非必要（Inertia惯量+Damping阻尼+Stiffness刚度）<br>JointType = {RotAxis,RotX,RotY,RotZ,TransAxis,TransX,TransY,TransZ,None}</p>
+<p><img src="kdl-Joint.png" alt="kdl_joint"></p>
+<h3 id="RigidBodyInertia刚体惯量"><a href="#RigidBodyInertia刚体惯量" class="headerlink" title="RigidBodyInertia刚体惯量"></a>RigidBodyInertia刚体惯量</h3><p>RigidBodyInertia = 质量+重力矩V3+转动惯量M3*3</p>
+<p><img src="kdl-RigidBodyInert.png" alt="kdl-RigidBodyInert"></p>
+<h3 id="Segment杆件"><a href="#Segment杆件" class="headerlink" title="Segment杆件"></a>Segment杆件</h3><p>Segment = Joint + RigidBodyInertia + Frame_reference + Frame_tip</p>
+<p><img src="kdl-Segment.png" alt="kdl-Segment"></p>
+<h3 id="Chain无分支运动链"><a href="#Chain无分支运动链" class="headerlink" title="Chain无分支运动链"></a>Chain无分支运动链</h3><p>Chain = Vector(Segment)</p>
+<p><img src="kdl-Chain.png" alt="kdl-Chain"></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><img src="kdl-Solver.png" alt="kdl-Solver"></p>
+<h3 id="基类"><a href="#基类" class="headerlink" title="基类"></a>基类</h3><ul>
+<li><code>SolverI</code>：solver interface用来存储和描述最近一次错误</li>
+</ul>
+<h3 id="正运动学"><a href="#正运动学" class="headerlink" title="正运动学"></a>正运动学</h3><ul>
+<li><code>ChainFkSolverPos</code>继承自<code>SolverI</code>：Chain的正运动学接口</li>
+<li><code>ChainFkSolverPos_recursive</code>继承自<code>ChainFkSolverPos</code>：递归fk</li>
+<li><code>ChainFkSolverVel_recursive</code>继承自<code>ChainFkSolverPos</code>：递归fk-vel</li>
+</ul>
+<p>例：<code>ChainFkSolverPos_recursive</code>接口</p>
+<ul>
+<li>构造函数<code>ChainFkSolverPos_recursive(const Chain&amp; chain)</code></li>
+<li>接口<code>virtual int JntToCart(const JntArray&amp; q_in, Frame&amp; p_out, int segmentNr=-1)</code>、<code>virtual int JntToCart(const JntArray&amp; q_in, std::vector&lt;Frame&gt;&amp; p_out, int segmentNr=-1);</code></li>
+</ul>
+<p><img src="kdl-ChainFkSolverPos.png" alt="kdl-ChainFkSolverPos"></p>
+<h3 id="逆运动学"><a href="#逆运动学" class="headerlink" title="逆运动学"></a>逆运动学</h3><ul>
+<li><code>ChainIkSolverPos</code>继承自<code>SolverI</code>：Chain的逆运动学接口</li>
+<li><code>ChainIkSolverPos_LMA</code>继承自<code>ChainIkSolverPos</code>：逆运动学——莱文贝格-马夸特，Levenberg-Marquardt</li>
+<li><code>ChainIkSolverPos_NR</code>：逆运动学——牛顿-拉夫森，Newton-Raphson</li>
+<li><code>ChainIkSolverPos_NR_JL</code>：逆运动学——牛顿-拉夫森带关节限位，Newton-Raphson with joint limits</li>
+<li><code>ChainIkSolverVel_pinv</code>继承自<code>ChainIkSolverPos</code>：ik-vel——广义伪逆，generalize pseudo inverse</li>
+<li><code>ChainIkSolverVel_pinv_nso</code>：ik-vel——广义伪逆（冗余机器人优化）</li>
+<li><code>ChainIkSolverVel_pinv_givens</code>：ik-vel——广义伪逆（Givens）</li>
+<li><code>ChainIkSolverVel_wdls</code>：ik-vel——加权伪逆（阻尼最小二乘）</li>
+</ul>
+<p>例：<code>ChainIkSolverPos_LMA</code>接口</p>
+<ul>
+<li>构造函数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ChainIkSolverPos_LMA(</span><br><span class="line">    		<span class="keyword">const</span> KDL::Chain&amp; _chain,</span><br><span class="line">    		<span class="keyword">const</span> Eigen::Matrix&lt;<span class="keyword">double</span>,<span class="number">6</span>,<span class="number">1</span>&gt;&amp; _L,</span><br><span class="line">    		<span class="keyword">double</span> _eps=<span class="number">1E-5</span>,</span><br><span class="line">    		<span class="keyword">int</span> _maxiter=<span class="number">500</span>,</span><br><span class="line">    		<span class="keyword">double</span> _eps_joints=<span class="number">1E-15</span>);</span><br><span class="line">    		</span><br><span class="line">ChainIkSolverPos_LMA(</span><br><span class="line">    		<span class="keyword">const</span> KDL::Chain&amp; _chain,</span><br><span class="line">    		<span class="keyword">double</span> _eps=<span class="number">1E-5</span>,</span><br><span class="line">    		<span class="keyword">int</span> _maxiter=<span class="number">500</span>,</span><br><span class="line">    		<span class="keyword">double</span> _eps_joints=<span class="number">1E-15</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接口</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">CartToJnt</span><span class="params">(<span class="keyword">const</span> KDL::JntArray&amp; q_init, <span class="keyword">const</span> KDL::Frame&amp; T_base_goal, KDL::JntArray&amp; q_out)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><img src="kdl-ChainIkSolverPos.png" alt="kdl-ChainIkSolverPos"></p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Raymond.Z</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiazuomo.com/2018/kdl-class-hierarchy/" title="KDL运动学动力学库类结构、接口整理">http://xiazuomo.com/2018/kdl-class-hierarchy/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KDL/" rel="tag"># KDL</a>
+          
+            <a href="/tags/运动学/" rel="tag"># 运动学</a>
+          
+            <a href="/tags/ROS/" rel="tag"># ROS</a>
+          
+            <a href="/tags/机器人/" rel="tag"># 机器人</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/kdl-intro/" rel="next" title="KDL运动学动力学库简介">
+                <i class="fa fa-chevron-left"></i> KDL运动学动力学库简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/reflexxes-motion-library-intro/" rel="prev" title="Reflexxes运动规划库简介">
+                Reflexxes运动规划库简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -417,8 +635,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -437,7 +664,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -503,7 +730,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -544,6 +783,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KDL运动学动力学库类结构、接口整理"><span class="nav-number">1.</span> <span class="nav-text">KDL运动学动力学库类结构、接口整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kinematic-Trees运动学结构数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">Kinematic Trees运动学结构数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Joint关节"><span class="nav-number">1.2.1.</span> <span class="nav-text">Joint关节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RigidBodyInertia刚体惯量"><span class="nav-number">1.2.2.</span> <span class="nav-text">RigidBodyInertia刚体惯量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segment杆件"><span class="nav-number">1.2.3.</span> <span class="nav-text">Segment杆件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chain无分支运动链"><span class="nav-number">1.2.4.</span> <span class="nav-text">Chain无分支运动链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基类"><span class="nav-number">1.3.1.</span> <span class="nav-text">基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正运动学"><span class="nav-number">1.3.2.</span> <span class="nav-text">正运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆运动学"><span class="nav-number">1.3.3.</span> <span class="nav-text">逆运动学</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -571,7 +826,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">26k</span>
   
 
   
@@ -701,6 +956,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -730,6 +989,28 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: '1539737686000',
+            owner: 'zfrxiaxia',
+            repo: 'zfrxiaxia.github.io',
+            
+            oauth: {
+            
+            
+                client_secret: '39c91557dff9d99b145169a574d090ab21ee0bce',
+            
+                client_id: '860e9aee0455e25dc315'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
@@ -1081,7 +1362,37 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1100,13 +1411,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-  
-  
-
-  
-  
-
+    
   
 
 
