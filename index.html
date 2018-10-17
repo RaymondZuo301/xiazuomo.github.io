@@ -457,7 +457,7 @@
       
         
           
-          Reflexxes运动规划库简介概述Reflexxes（全称为Reflexxes Motion Library，简称RML）是一个开源（Type-II开源， Type-IV商业库）的在线运动轨迹生成库，具有众多优点使其可以应用于机器人、数控机床和伺服驱动系统等领域，V-REP中集成了RML-Type
+          概述Reflexxes（全称为Reflexxes Motion Library，简称RML）是一个开源（Type-II开源， Type-IV商业库）的在线运动轨迹生成库，具有众多优点使其可以应用于机器人、数控机床和伺服驱动系统等领域，V-REP中集成了RML-Type-IV,目前Reflexxes公
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -635,12 +635,14 @@
       
         
           
-          KDL运动学动力学库类结构、接口整理基本数据类型
+          基本数据类型
 Vector：double[3]，3维向量
 Rotation：double[9]，3*3矩阵
 Frame：Vector+Rotation，变换矩阵
 Twist：Vector(平移速度)+Vector(旋转速度)
-Wrench：Vector(力)+Ve
+Wrench：Vector(力)+Vector(转矩)
+
+Kinemati
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -818,13 +820,13 @@ Wrench：Vector(力)+Ve
       
         
           
-          KDL运动学动力学库简介前言仅整理了KDL里Chain运动学相关内容
+          前言仅整理了KDL里Chain运动学相关内容
 基本数据类型
 Vector：double[3]，3维向量
 Rotation：double[9]，3*3矩阵
 Frame：Vector+Rotation，变换矩阵
 Twist：Vector(平移速度)+Vector(旋转速度)
-Wr
+Wrench：Vector(
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1002,8 +1004,8 @@ Wr
       
         
           
-          线性代数库调研前言本文罗列了线性代数库/API相关的内容，包含基本数学库/API和高级数学库相关内容，以及他们之间的对比，可跳过前面直接阅读“线性代数库选用”相关内容。
-基本数学库/APIBLAS简介：基本线性代数子程序，Basic Linear Algebra Subprograms，是一个API
+          前言本文罗列了线性代数库/API相关的内容，包含基本数学库/API和高级数学库相关内容，以及他们之间的对比，可跳过前面直接阅读“线性代数库选用”相关内容。
+基本数学库/APIBLAS简介：基本线性代数子程序，Basic Linear Algebra Subprograms，是一个API标淮，用以规范
           ...
           <!--noindex-->
           <div class="post-button text-center">

@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = J">
+  <meta name="description" content="基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = JointType + Scale(输">
 <meta name="keywords" content="KDL,运动学,ROS,机器人">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KDL运动学动力学库类结构、接口整理">
 <meta property="og:url" content="http://xiazuomo.com/2018/kdl-class-hierarchy/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = J">
+<meta property="og:description" content="基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = JointType + Scale(输">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Joint.png">
 <meta property="og:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-RigidBodyInert.png">
@@ -126,7 +126,7 @@
 <meta property="og:updated_time" content="2018-10-17T00:54:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KDL运动学动力学库类结构、接口整理">
-<meta name="twitter:description" content="KDL运动学动力学库类结构、接口整理基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = J">
+<meta name="twitter:description" content="基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩)  Kinematic Trees运动学结构数据类型Joint关节Joint = JointType + Scale(输">
 <meta name="twitter:image" content="http://xiazuomo.com/2018/kdl-class-hierarchy/kdl-Joint.png">
 
 
@@ -468,7 +468,7 @@
       
 
       
-        <h1 id="KDL运动学动力学库类结构、接口整理"><a href="#KDL运动学动力学库类结构、接口整理" class="headerlink" title="KDL运动学动力学库类结构、接口整理"></a>KDL运动学动力学库类结构、接口整理</h1><h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
+        <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
 <li>Vector：double[3]，3维向量</li>
 <li>Rotation：double[9]，3*3矩阵</li>
 <li>Frame：Vector+Rotation，变换矩阵</li>
@@ -792,7 +792,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KDL运动学动力学库类结构、接口整理"><span class="nav-number">1.</span> <span class="nav-text">KDL运动学动力学库类结构、接口整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kinematic-Trees运动学结构数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">Kinematic Trees运动学结构数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Joint关节"><span class="nav-number">1.2.1.</span> <span class="nav-text">Joint关节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RigidBodyInertia刚体惯量"><span class="nav-number">1.2.2.</span> <span class="nav-text">RigidBodyInertia刚体惯量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segment杆件"><span class="nav-number">1.2.3.</span> <span class="nav-text">Segment杆件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chain无分支运动链"><span class="nav-number">1.2.4.</span> <span class="nav-text">Chain无分支运动链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基类"><span class="nav-number">1.3.1.</span> <span class="nav-text">基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正运动学"><span class="nav-number">1.3.2.</span> <span class="nav-text">正运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆运动学"><span class="nav-number">1.3.3.</span> <span class="nav-text">逆运动学</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kinematic-Trees运动学结构数据类型"><span class="nav-number">2.</span> <span class="nav-text">Kinematic Trees运动学结构数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Joint关节"><span class="nav-number">2.1.</span> <span class="nav-text">Joint关节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RigidBodyInertia刚体惯量"><span class="nav-number">2.2.</span> <span class="nav-text">RigidBodyInertia刚体惯量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segment杆件"><span class="nav-number">2.3.</span> <span class="nav-text">Segment杆件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chain无分支运动链"><span class="nav-number">2.4.</span> <span class="nav-text">Chain无分支运动链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基类"><span class="nav-number">3.1.</span> <span class="nav-text">基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正运动学"><span class="nav-number">3.2.</span> <span class="nav-text">正运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆运动学"><span class="nav-number">3.3.</span> <span class="nav-text">逆运动学</span></a></li></ol></li></ol></div>
             
 
           </div>

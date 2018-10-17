@@ -109,7 +109,7 @@
 
 
   <meta name="description" content="写在前面在解决点云可见性问题时，需在同一视角（z轴正方向）下将点云绕其中心进行N次旋转变换，同时保证随机性（均匀性），所以需求一种生成N个随机旋转变换的采样方法。可以将求旋转变换的问题转化为对一个$r=1$的单位球面进行均匀采样的问题，因为球面上任意一点可看做是空间向量$\vec{v}(x,y,z)$，再用轴（叉乘产生的法向轴）角法计算与向量$\vec{z}(0,0,1)$间旋转变换，从而得到一些">
-<meta name="keywords" content="Eigen,点云">
+<meta name="keywords" content="点云,Eigen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于球面均匀采样的旋转变换采样">
 <meta property="og:url" content="http://xiazuomo.com/2018/rotation-sampling/index.html">
@@ -520,9 +520,9 @@ y_n &= \sqrt{1-z_n^2} \cdot \sin(2 \pi n \phi)\\
       
         <div class="post-tags">
           
-            <a href="/tags/Eigen/" rel="tag"># Eigen</a>
-          
             <a href="/tags/点云/" rel="tag"># 点云</a>
+          
+            <a href="/tags/Eigen/" rel="tag"># Eigen</a>
           
         </div>
       

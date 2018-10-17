@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="KDL运动学动力学库简介前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 R">
+  <meta name="description" content="前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 Rotation2： $c">
 <meta name="keywords" content="KDL,运动学,ROS,机器人">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KDL运动学动力学库简介">
 <meta property="og:url" content="http://xiazuomo.com/2018/kdl-intro/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="KDL运动学动力学库简介前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 R">
+<meta property="og:description" content="前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 Rotation2： $c">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://xiazuomo.com/2018/kdl-intro/algorithm-framework-1.png">
 <meta property="og:image" content="http://xiazuomo.com/2018/kdl-intro/algorithm-framework-2.png">
@@ -122,7 +122,7 @@
 <meta property="og:updated_time" content="2018-10-17T00:50:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KDL运动学动力学库简介">
-<meta name="twitter:description" content="KDL运动学动力学库简介前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 R">
+<meta name="twitter:description" content="前言仅整理了KDL里Chain运动学相关内容 基本数据类型 Vector：double[3]，3维向量 Rotation：double[9]，3*3矩阵 Frame：Vector+Rotation，变换矩阵 Twist：Vector(平移速度)+Vector(旋转速度) Wrench：Vector(力)+Vector(转矩) Vecto2r：double[2]，2维向量 Rotation2： $c">
 <meta name="twitter:image" content="http://xiazuomo.com/2018/kdl-intro/algorithm-framework-1.png">
 
 
@@ -464,7 +464,7 @@
       
 
       
-        <h1 id="KDL运动学动力学库简介"><a href="#KDL运动学动力学库简介" class="headerlink" title="KDL运动学动力学库简介"></a>KDL运动学动力学库简介</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>仅整理了KDL里Chain运动学相关内容</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>仅整理了KDL里Chain运动学相关内容</p>
 <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
 <li>Vector：double[3]，3维向量</li>
 <li>Rotation：double[9]，3*3矩阵</li>
@@ -781,7 +781,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KDL运动学动力学库简介"><span class="nav-number">1.</span> <span class="nav-text">KDL运动学动力学库简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kinematic-Trees运动学结构数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">Kinematic Trees运动学结构数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运动学算法框架"><span class="nav-number">1.4.</span> <span class="nav-text">运动学算法框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基类"><span class="nav-number">1.4.1.</span> <span class="nav-text">基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正运动学"><span class="nav-number">1.4.2.</span> <span class="nav-text">正运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆运动学"><span class="nav-number">1.4.3.</span> <span class="nav-text">逆运动学</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">2.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kinematic-Trees运动学结构数据类型"><span class="nav-number">3.</span> <span class="nav-text">Kinematic Trees运动学结构数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运动学算法框架"><span class="nav-number">4.</span> <span class="nav-text">运动学算法框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基类"><span class="nav-number">4.1.</span> <span class="nav-text">基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正运动学"><span class="nav-number">4.2.</span> <span class="nav-text">正运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆运动学"><span class="nav-number">4.3.</span> <span class="nav-text">逆运动学</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
