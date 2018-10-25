@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言本文包含MKL配置、Cmake写法、Eigen中使用MKL的方法。 MKL安装下载地址：https://software.intel.com/en-us/mkl 解压后使用install_GUI.sh安装，默认安装路径为/opt/intel/mkl 可选配置项：  运行sudo gedit /etc/ld.so.conf.d/intel_mkl.conf，添加：  12/opt/intel/l">
+<meta name="keywords" content="Eigen,C++,并行&#x2F;并发&#x2F;多线程,MKL,OpenMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eigen使用MKL作为backend加速矩阵运算">
+<meta property="og:url" content="http://xiazuomo.com/2018/eigen-with-mkl/index.html">
+<meta property="og:site_name" content="虾琢磨">
+<meta property="og:description" content="前言本文包含MKL配置、Cmake写法、Eigen中使用MKL的方法。 MKL安装下载地址：https://software.intel.com/en-us/mkl 解压后使用install_GUI.sh安装，默认安装路径为/opt/intel/mkl 可选配置项：  运行sudo gedit /etc/ld.so.conf.d/intel_mkl.conf，添加：  12/opt/intel/l">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-25T02:43:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eigen使用MKL作为backend加速矩阵运算">
+<meta name="twitter:description" content="前言本文包含MKL配置、Cmake写法、Eigen中使用MKL的方法。 MKL安装下载地址：https://software.intel.com/en-us/mkl 解压后使用install_GUI.sh安装，默认安装路径为/opt/intel/mkl 可选配置项：  运行sudo gedit /etc/ld.so.conf.d/intel_mkl.conf，添加：  12/opt/intel/l">
+
+
+
+
+
+
+  <link rel="canonical" href="http://xiazuomo.com/2018/eigen-with-mkl/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Eigen使用MKL作为backend加速矩阵运算 | 虾琢磨</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">虾琢磨</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">用代码做有意思的事情</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2018/eigen-with-mkl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Raymond.Z">
+      <meta itemprop="description" content="用代码做有意思的事情">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾琢磨">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Eigen使用MKL作为backend加速矩阵运算
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-25 10:43:21" itemprop="dateCreated datePublished" datetime="2018-10-25T10:43:21+08:00">2018-10-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技巧/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">9.6k</span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文包含MKL配置、Cmake写法、Eigen中使用MKL的方法。</p>
+<h2 id="MKL安装"><a href="#MKL安装" class="headerlink" title="MKL安装"></a>MKL安装</h2><p>下载地址：<a href="https://software.intel.com/en-us/mkl" target="_blank" rel="noopener">https://software.intel.com/en-us/mkl</a></p>
+<p>解压后使用<code>install_GUI.sh</code>安装，默认安装路径为<code>/opt/intel/mkl</code></p>
+<p>可选配置项：</p>
+<ul>
+<li>运行<code>sudo gedit /etc/ld.so.conf.d/intel_mkl.conf</code>，添加：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/intel/lib/intel64</span><br><span class="line">/opt/intel/mkl/lib/intel64</span><br></pre></td></tr></table></figure>
+<p>运行<code>sudo ldconfig</code></p>
+<ul>
+<li>运行<code>sudo gedit /etc/profile</code>，添加：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export MKL_ROOT_DIR=/opt/intel/mkl</span><br></pre></td></tr></table></figure>
+<p>运行<code>sudo source /etc/profile</code>，尽量重启电脑以保证生效</p>
+<h2 id="Eigen-MKL的cmake写法"><a href="#Eigen-MKL的cmake写法" class="headerlink" title="Eigen+MKL的cmake写法"></a>Eigen+MKL的cmake写法</h2><h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/root</span><br><span class="line">	├── CMakeLists.txt</span><br><span class="line">	├── FindMKL.cmake</span><br><span class="line">	└── main.cpp</span><br></pre></td></tr></table></figure>
+<h3 id="工程CmakeList-txt写法"><a href="#工程CmakeList-txt写法" class="headerlink" title="工程CmakeList.txt写法"></a>工程CmakeList.txt写法</h3><p>其中启用OpenMP通过添加<code>-fopenmp</code>实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required (VERSION 2.6 FATAL_ERROR)</span><br><span class="line">project(test)</span><br><span class="line"></span><br><span class="line"># 将根目录加入cmake module文件的搜索路径</span><br><span class="line">set(CMAKE_MODULE_PATH $&#123;CMAKE_MODULE_PATH&#125; &quot;$&#123;CMAKE_SOURCE_DIR&#125;/&quot;)</span><br><span class="line"></span><br><span class="line">find_package(Eigen3)</span><br><span class="line">include_directories($&#123;EIGEN3_INCLUDE_DIR&#125;)</span><br><span class="line"></span><br><span class="line">find_package(MKL)</span><br><span class="line">include_directories($&#123;MKL_INCLUDE_DIR&#125;)</span><br><span class="line"></span><br><span class="line">include_directories($&#123;PROJECT_SOURCE_DIR&#125;)</span><br><span class="line">set( CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -std=c++11 -fopenmp&quot; )</span><br><span class="line">ADD_EXECUTABLE(exe main.cpp)</span><br><span class="line">TARGET_LINK_LIBRARIES(exe $&#123;MKL_LIBRARIES&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="FindMKL-cmake写法"><a href="#FindMKL-cmake写法" class="headerlink" title="FindMKL.cmake写法"></a>FindMKL.cmake写法</h3><p>代码见文末，参考自<a href="https://github.com/Eyescale/CMake/blob/master/FindMKL.cmake" target="_blank" rel="noopener">链接</a>，做了部分修改，其中<code>set(MKL_LIBRARIES ${MKL_LP_SEQUENTIAL_LIBRARIES})</code>一行最为关键。</p>
+<p>MKL有以下概念：</p>
+<ul>
+<li>数据格式，LP64和ILP64，其中LP64用于64位系统，ILP用于32位系统</li>
+<li>线程类型，单线程SEQUENTIAL、GNU多线程GNUTHREAD、Intel多线程INTELTHREAD，Ubuntu下可使用GNU多线程，Win下可使用Intel多线程，对于较低维度的矩阵运算单线程似乎更快</li>
+<li>MPI，分为NOMP、INTELMPI、OPENMPI、SGIMPT四种，本FindMKL.cmake暂未支持配置MPI</li>
+</ul>
+<p>Ubuntu下常用配置为</p>
+<ul>
+<li><code>set(MKL_LIBRARIES ${MKL_LP_SEQUENTIAL_LIBRARIES})</code>单线程</li>
+<li><code>set(MKL_LIBRARIES ${MKL_LP_GNUTHREAD_LIBRARIES})</code>多线程</li>
+</ul>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><h3 id="Eigen"><a href="#Eigen" class="headerlink" title="Eigen"></a>Eigen</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#define EIGEN_VECTORIZE_SSE4_2</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;Eigen/Core&gt;</span><br><span class="line">#include &lt;Eigen/Dense&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    srand((unsigned)time(NULL));</span><br><span class="line">    clock_t start,finish;</span><br><span class="line">    double totaltime;</span><br><span class="line">    start=clock();</span><br><span class="line">    </span><br><span class="line">    Eigen::MatrixXf m1 = Eigen::MatrixXf::Random(7000, 7000);</span><br><span class="line">    Eigen::MatrixXf m2 = Eigen::MatrixXf::Random(7000, 7000);</span><br><span class="line">    Eigen::MatrixXf m3 = m1*m2;</span><br><span class="line"></span><br><span class="line">    finish=clock();</span><br><span class="line">    totaltime=(double)(finish-start)/CLOCKS_PER_SEC;</span><br><span class="line">    std::cout&lt;&lt; &quot;此程序的运行时间为&quot; &lt;&lt; totaltime &lt;&lt; &quot;秒&quot; &lt;&lt;std::endl;</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br></pre></td></tr></table></figure>
+<h3 id="Eigen-OpenMP"><a href="#Eigen-OpenMP" class="headerlink" title="Eigen+OpenMP"></a>Eigen+OpenMP</h3><p>添加<code>-fopenmp</code>编译参数，2线程，上一代码添加如下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#define EIGEN_VECTORIZE_SSE4_2</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;Eigen/Core&gt;</span><br><span class="line">#include &lt;Eigen/Dense&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    omp_set_num_threads(2);</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<h3 id="Eigen-MKL单线程"><a href="#Eigen-MKL单线程" class="headerlink" title="Eigen+MKL单线程"></a>Eigen+MKL单线程</h3><p>FindMKL.cmake中使用<code>MKL_LP_SEQUENTIAL_LIBRARIES</code>，添加<code>#define EIGEN_USE_MKL_ALL</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#define EIGEN_USE_MKL_ALL</span><br><span class="line">#define EIGEN_VECTORIZE_SSE4_2</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;Eigen/Core&gt;</span><br><span class="line">#include &lt;Eigen/Dense&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<h3 id="Eigen-MKL多线程"><a href="#Eigen-MKL多线程" class="headerlink" title="Eigen+MKL多线程"></a>Eigen+MKL多线程</h3><p>FindMKL.cmake中使用<code>MKL_LP_GNUTHREAD_LIBRARIES</code>，添加<code>#define EIGEN_USE_MKL_ALL</code>、<code>omp_set_num_threads(2);</code>，使用2线程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#define EIGEN_USE_MKL_ALL</span><br><span class="line">#define EIGEN_VECTORIZE_SSE4_2</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;Eigen/Core&gt;</span><br><span class="line">#include &lt;Eigen/Dense&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    omp_set_num_threads(2);</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h3 id="结果对比"><a href="#结果对比" class="headerlink" title="结果对比"></a>结果对比</h3><p>由结果可见MKL可显著提升高阶矩阵的运算速度（另外测试发现低阶矩阵速度差别不大），在当前测试环境（i3+4g+Ubuntu15.04）下多线程并没有提升乘法的运算速度</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">测试项</th>
+<th style="text-align:center">线程</th>
+<th style="text-align:center">时间/秒</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Eigen</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">27.1427</td>
+</tr>
+<tr>
+<td style="text-align:center">Eigen+OpenMP</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">31.3295</td>
+</tr>
+<tr>
+<td style="text-align:center">Eigen+MKL单线程</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">8.43301</td>
+</tr>
+<tr>
+<td style="text-align:center">Eigen+MKL多线程</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">9.5142</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>添加<code>#define EIGEN_DONT_PARALLELIZE</code>可使Eigen不适用任何并行加速，但对<br>Eigen+MKL的配置方式无效，仅对Eigen或Eigen+OpenMP生效。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://eigen.tuxfamily.org/dox/TopicPreprocessorDirectives.html" target="_blank" rel="noopener">http://eigen.tuxfamily.org/dox/TopicPreprocessorDirectives.html</a></li>
+<li><a href="http://eigen.tuxfamily.org/dox/TopicUsingIntelMKL.html" target="_blank" rel="noopener">http://eigen.tuxfamily.org/dox/TopicUsingIntelMKL.html</a></li>
+<li><a href="https://software.intel.com/en-us/mkl" target="_blank" rel="noopener">https://software.intel.com/en-us/mkl</a></li>
+<li><a href="https://github.com/Eyescale/CMake/blob/master/FindMKL.cmake" target="_blank" rel="noopener">https://github.com/Eyescale/CMake/blob/master/FindMKL.cmake</a></li>
+<li><a href="https://blog.csdn.net/LG1259156776/article/details/52730074?locationNum=6&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/LG1259156776/article/details/52730074?locationNum=6&amp;fps=1</a></li>
+</ul>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>FindMKL.cmake</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"># - Try to find the Intel Math Kernel Library</span><br><span class="line">#   Forked from: https://github.com/openmeeg/openmeeg/blob/master/macros/FindMKL.cmake</span><br><span class="line"># Once done this will define</span><br><span class="line">#</span><br><span class="line"># MKL_FOUND - system has MKL</span><br><span class="line"># MKL_ROOT_DIR - path to the MKL base directory</span><br><span class="line"># MKL_INCLUDE_DIR - the MKL include directory</span><br><span class="line"># MKL_LIBRARIES - MKL libraries</span><br><span class="line">#</span><br><span class="line"># There are few sets of libraries:</span><br><span class="line"># Array indexes modes:</span><br><span class="line"># LP - 32 bit indexes of arrays</span><br><span class="line"># ILP - 64 bit indexes of arrays</span><br><span class="line"># Threading:</span><br><span class="line"># SEQUENTIAL - no threading</span><br><span class="line"># INTEL - Intel threading library</span><br><span class="line"># GNU - GNU threading library</span><br><span class="line"># MPI support</span><br><span class="line"># NOMPI - no MPI support</span><br><span class="line"># INTEL - Intel MPI library</span><br><span class="line"># OPEN - Open MPI library</span><br><span class="line"># SGI - SGI MPT Library</span><br><span class="line"></span><br><span class="line"># linux</span><br><span class="line">if(UNIX AND NOT APPLE)</span><br><span class="line">    if($&#123;CMAKE_HOST_SYSTEM_PROCESSOR&#125; STREQUAL &quot;x86_64&quot;)</span><br><span class="line">        set(MKL_ARCH_DIR &quot;intel64&quot;)</span><br><span class="line">    else()</span><br><span class="line">        set(MKL_ARCH_DIR &quot;32&quot;)</span><br><span class="line">    endif()</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"># macos</span><br><span class="line">if(APPLE)</span><br><span class="line">    set(MKL_ARCH_DIR &quot;em64t&quot;)</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line">IF(FORCE_BUILD_32BITS)</span><br><span class="line">    set(MKL_ARCH_DIR &quot;32&quot;)</span><br><span class="line">ENDIF()</span><br><span class="line"></span><br><span class="line">if (WIN32)</span><br><span class="line">    if($&#123;CMAKE_SIZEOF_VOID_P&#125; EQUAL 8)</span><br><span class="line">        set(MKL_ARCH_DIR &quot;intel64&quot;)</span><br><span class="line">    else()</span><br><span class="line">        set(MKL_ARCH_DIR &quot;ia32&quot;)</span><br><span class="line">    endif()</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line">set (MKL_THREAD_VARIANTS SEQUENTIAL GNUTHREAD INTELTHREAD)</span><br><span class="line">set (MKL_MODE_VARIANTS ILP LP)</span><br><span class="line">set (MKL_MPI_VARIANTS NOMPI INTELMPI OPENMPI SGIMPT)</span><br><span class="line"></span><br><span class="line">find_path(MKL_ROOT_DIR</span><br><span class="line">    include/mkl_cblas.h</span><br><span class="line">    PATHS</span><br><span class="line">    #$ENV&#123;MKL_ROOT_DIR&#125;</span><br><span class="line">    /opt/intel/mkl/</span><br><span class="line">    /opt/intel/cmkl/</span><br><span class="line">    /Library/Frameworks/Intel_MKL.framework/Versions/Current/lib/universal</span><br><span class="line">    &quot;Program Files (x86)/Intel/ComposerXE-2011/mkl&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">MESSAGE(&quot;MKL_ROOT_DIR : $&#123;MKL_ROOT_DIR&#125;&quot;) # for debug</span><br><span class="line"></span><br><span class="line">find_path(MKL_INCLUDE_DIR</span><br><span class="line">  mkl_cblas.h</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/include</span><br><span class="line">    $&#123;INCLUDE_INSTALL_DIR&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">find_path(MKL_FFTW_INCLUDE_DIR</span><br><span class="line">  fftw3.h</span><br><span class="line">  PATH_SUFFIXES fftw</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/include</span><br><span class="line">    $&#123;INCLUDE_INSTALL_DIR&#125;</span><br><span class="line">  NO_DEFAULT_PATH</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">find_library(MKL_CORE_LIBRARY</span><br><span class="line">  mkl_core</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># Threading libraries</span><br><span class="line">find_library(MKL_SEQUENTIAL_LIBRARY</span><br><span class="line">  mkl_sequential</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">find_library(MKL_INTELTHREAD_LIBRARY</span><br><span class="line">  mkl_intel_thread</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">find_library(MKL_GNUTHREAD_LIBRARY</span><br><span class="line">  mkl_gnu_thread</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># Intel Libraries</span><br><span class="line">IF(&quot;$&#123;MKL_ARCH_DIR&#125;&quot; STREQUAL &quot;32&quot;)</span><br><span class="line">    find_library(MKL_LP_LIBRARY</span><br><span class="line">      mkl_intel</span><br><span class="line">      PATHS</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    find_library(MKL_ILP_LIBRARY</span><br><span class="line">      mkl_intel</span><br><span class="line">      PATHS</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">    )</span><br><span class="line">else()</span><br><span class="line">    find_library(MKL_LP_LIBRARY</span><br><span class="line">      mkl_intel_lp64</span><br><span class="line">      PATHS</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    find_library(MKL_ILP_LIBRARY</span><br><span class="line">      mkl_intel_ilp64</span><br><span class="line">      PATHS</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">    )</span><br><span class="line">ENDIF()</span><br><span class="line"></span><br><span class="line"># Lapack</span><br><span class="line">find_library(MKL_LAPACK_LIBRARY</span><br><span class="line">  mkl_lapack</span><br><span class="line">  PATHS</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">    $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">IF(NOT MKL_LAPACK_LIBRARY)</span><br><span class="line">    find_library(MKL_LAPACK_LIBRARY</span><br><span class="line">      mkl_lapack95_lp64</span><br><span class="line">      PATHS</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;</span><br><span class="line">        $&#123;MKL_ROOT_DIR&#125;/lib/</span><br><span class="line">    )</span><br><span class="line">ENDIF()</span><br><span class="line"></span><br><span class="line">IF(NOT MKL_LAPACK_LIBRARY)</span><br><span class="line">    SET(MKL_LAPACK_LIBRARY $&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;/lib/libmkl_lapack95_lp64.a)</span><br><span class="line">ENDIF()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># iomp5</span><br><span class="line">IF(&quot;$&#123;MKL_ARCH_DIR&#125;&quot; STREQUAL &quot;32&quot;)</span><br><span class="line">    IF(UNIX AND NOT APPLE)</span><br><span class="line">        find_library(MKL_IOMP5_LIBRARY</span><br><span class="line">          iomp5</span><br><span class="line">          PATHS</span><br><span class="line">            $&#123;MKL_ROOT_DIR&#125;/../lib/intel64</span><br><span class="line">        )</span><br><span class="line">    ELSE()</span><br><span class="line">        SET(MKL_IOMP5_LIBRARY &quot;&quot;) # no need for mac</span><br><span class="line">    ENDIF()</span><br><span class="line">else()</span><br><span class="line">    IF(UNIX AND NOT APPLE)</span><br><span class="line">        find_library(MKL_IOMP5_LIBRARY</span><br><span class="line">          iomp5</span><br><span class="line">          PATHS</span><br><span class="line">            $&#123;MKL_ROOT_DIR&#125;/../lib/intel64</span><br><span class="line">        )</span><br><span class="line">    ELSE()</span><br><span class="line">        SET(MKL_IOMP5_LIBRARY &quot;&quot;) # no need for mac</span><br><span class="line">    ENDIF()</span><br><span class="line">ENDIF()</span><br><span class="line"></span><br><span class="line">foreach (MODEVAR $&#123;MKL_MODE_VARIANTS&#125;)</span><br><span class="line">    foreach (THREADVAR $&#123;MKL_THREAD_VARIANTS&#125;)</span><br><span class="line">        if (MKL_CORE_LIBRARY AND MKL_$&#123;MODEVAR&#125;_LIBRARY AND MKL_$&#123;THREADVAR&#125;_LIBRARY)</span><br><span class="line">            set(MKL_$&#123;MODEVAR&#125;_$&#123;THREADVAR&#125;_LIBRARIES</span><br><span class="line">                $&#123;MKL_$&#123;MODEVAR&#125;_LIBRARY&#125; $&#123;MKL_$&#123;THREADVAR&#125;_LIBRARY&#125; $&#123;MKL_CORE_LIBRARY&#125;</span><br><span class="line">                $&#123;MKL_LAPACK_LIBRARY&#125; $&#123;MKL_IOMP5_LIBRARY&#125;)</span><br><span class="line">            message(&quot;$&#123;MODEVAR&#125; $&#123;THREADVAR&#125; $&#123;MKL_$&#123;MODEVAR&#125;_$&#123;THREADVAR&#125;_LIBRARIES&#125;&quot;) # for debug</span><br><span class="line">        endif()</span><br><span class="line">    endforeach()</span><br><span class="line">endforeach()</span><br><span class="line"></span><br><span class="line">set(MKL_LIBRARIES $&#123;MKL_LP_SEQUENTIAL_LIBRARIES&#125;)</span><br><span class="line">LINK_DIRECTORIES($&#123;MKL_ROOT_DIR&#125;/lib/$&#123;MKL_ARCH_DIR&#125;) # hack</span><br><span class="line"></span><br><span class="line">include(FindPackageHandleStandardArgs)</span><br><span class="line">find_package_handle_standard_args(MKL DEFAULT_MSG MKL_INCLUDE_DIR MKL_LIBRARIES)</span><br><span class="line"></span><br><span class="line">mark_as_advanced(MKL_INCLUDE_DIR MKL_LIBRARIES</span><br><span class="line">    MKL_CORE_LIBRARY MKL_LP_LIBRARY MKL_ILP_LIBRARY</span><br><span class="line">    MKL_SEQUENTIAL_LIBRARY MKL_INTELTHREAD_LIBRARY MKL_GNUTHREAD_LIBRARY</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Raymond.Z</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiazuomo.com/2018/eigen-with-mkl/" title="Eigen使用MKL作为backend加速矩阵运算">http://xiazuomo.com/2018/eigen-with-mkl/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Eigen/" rel="tag"># Eigen</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/并行-并发-多线程/" rel="tag"># 并行/并发/多线程</a>
+          
+            <a href="/tags/MKL/" rel="tag"># MKL</a>
+          
+            <a href="/tags/OpenMP/" rel="tag"># OpenMP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/eigen-no-malloc/" rel="next" title="Eigen禁止Malloc动态内存分配的方法">
+                <i class="fa fa-chevron-left"></i> Eigen禁止Malloc动态内存分配的方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Raymond.Z" />
+            
+              <p class="site-author-name" itemprop="name">Raymond.Z</p>
+              <p class="site-description motion-element" itemprop="description">用代码做有意思的事情</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zfrxiaxia" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/zuo-rui-82/activities" target="_blank" title="知乎"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MKL安装"><span class="nav-number">2.</span> <span class="nav-text">MKL安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eigen-MKL的cmake写法"><span class="nav-number">3.</span> <span class="nav-text">Eigen+MKL的cmake写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工程目录结构"><span class="nav-number">3.1.</span> <span class="nav-text">工程目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程CmakeList-txt写法"><span class="nav-number">3.2.</span> <span class="nav-text">工程CmakeList.txt写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FindMKL-cmake写法"><span class="nav-number">3.3.</span> <span class="nav-text">FindMKL.cmake写法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例代码"><span class="nav-number">4.</span> <span class="nav-text">示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eigen"><span class="nav-number">4.1.</span> <span class="nav-text">Eigen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eigen-OpenMP"><span class="nav-number">4.2.</span> <span class="nav-text">Eigen+OpenMP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eigen-MKL单线程"><span class="nav-number">4.3.</span> <span class="nav-text">Eigen+MKL单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eigen-MKL多线程"><span class="nav-number">4.4.</span> <span class="nav-text">Eigen+MKL多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果对比"><span class="nav-number">4.5.</span> <span class="nav-text">结果对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.6.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附"><span class="nav-number">6.</span> <span class="nav-text">附</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Raymond.Z</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">40k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i> 访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i> 阅读数
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: '1540435401000',
+            owner: 'zfrxiaxia',
+            repo: 'zfrxiaxia.github.io',
+            
+            oauth: {
+            
+            
+                client_secret: '39c91557dff9d99b145169a574d090ab21ee0bce',
+            
+                client_id: '860e9aee0455e25dc315'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

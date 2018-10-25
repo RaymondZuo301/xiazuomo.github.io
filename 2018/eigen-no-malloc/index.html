@@ -108,24 +108,25 @@
 
 
 
-  <meta name="description" content="用代码做有意思的事情">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://xiazuomo.com/tags/index.html">
+  <meta name="description" content="前言Eigen的基本数据类型分为Matrix和Array，其中Matrix用于线性代数运算，而Array用于更通用、可扩展的场景，在此仅讨论Matrix相关内容。本问主要讨论了Eigen中使用动态内存分配/堆分配的情况，以及避免或检测动态内存分配的方法。 Matrix的内存分配常用Eigen类型的内存分配    派生类型 Matrix类型 例 内存分配     Vector&amp;lt;n&amp;gt;&amp;lt">
+<meta name="keywords" content="Eigen,C++,内存管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eigen禁止Malloc动态内存分配的方法">
+<meta property="og:url" content="http://xiazuomo.com/2018/eigen-no-malloc/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="用代码做有意思的事情">
+<meta property="og:description" content="前言Eigen的基本数据类型分为Matrix和Array，其中Matrix用于线性代数运算，而Array用于更通用、可扩展的场景，在此仅讨论Matrix相关内容。本问主要讨论了Eigen中使用动态内存分配/堆分配的情况，以及避免或检测动态内存分配的方法。 Matrix的内存分配常用Eigen类型的内存分配    派生类型 Matrix类型 例 内存分配     Vector&amp;lt;n&amp;gt;&amp;lt">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-06T06:30:33.902Z">
+<meta property="og:updated_time" content="2018-10-25T02:43:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="用代码做有意思的事情">
+<meta name="twitter:title" content="Eigen禁止Malloc动态内存分配的方法">
+<meta name="twitter:description" content="前言Eigen的基本数据类型分为Matrix和Array，其中Matrix用于线性代数运算，而Array用于更通用、可扩展的场景，在此仅讨论Matrix相关内容。本问主要讨论了Eigen中使用动态内存分配/堆分配的情况，以及避免或检测动态内存分配的方法。 Matrix的内存分配常用Eigen类型的内存分配    派生类型 Matrix类型 例 内存分配     Vector&amp;lt;n&amp;gt;&amp;lt">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xiazuomo.com/tags/"/>
+  <link rel="canonical" href="http://xiazuomo.com/2018/eigen-no-malloc/"/>
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>标签 | 虾琢磨</title>
+  <title>Eigen禁止Malloc动态内存分配的方法 | 虾琢磨</title>
   
 
 
@@ -239,7 +240,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
   </li>
@@ -319,177 +320,329 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2018/eigen-no-malloc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Raymond.Z">
+      <meta itemprop="description" content="用代码做有意思的事情">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾琢磨">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">标签</h1>
+        
+        
+          <h1 class="post-title" itemprop="name headline">Eigen禁止Malloc动态内存分配的方法
+              
+            
+          </h1>
+        
 
-<div class="post-meta">
-  
-  
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2018-10-25 10:43:09" itemprop="dateCreated datePublished" datetime="2018-10-25T10:43:09+08:00">2018-10-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技巧/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.7k</span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Eigen的基本数据类型分为Matrix和Array，其中Matrix用于线性代数运算，而Array用于更通用、可扩展的场景，在此仅讨论Matrix相关内容。本问主要讨论了Eigen中使用动态内存分配/堆分配的情况，以及避免或检测动态内存分配的方法。</p>
+<h2 id="Matrix的内存分配"><a href="#Matrix的内存分配" class="headerlink" title="Matrix的内存分配"></a>Matrix的内存分配</h2><h3 id="常用Eigen类型的内存分配"><a href="#常用Eigen类型的内存分配" class="headerlink" title="常用Eigen类型的内存分配"></a>常用Eigen类型的内存分配</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">派生类型</th>
+<th style="text-align:center">Matrix类型</th>
+<th style="text-align:center">例</th>
+<th style="text-align:center">内存分配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>Vector&lt;n&gt;&lt;type&gt;</code>, 2≤n≤4</td>
+<td style="text-align:center"><code>Matrix&lt;float/double/int,&lt;n&gt;,1&gt;</code></td>
+<td style="text-align:center"><code>Vector2f</code>、<code>Vector3d</code>、<code>Vector4i</code></td>
+<td style="text-align:center">静态</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>VectorX&lt;type&gt;</code></td>
+<td style="text-align:center"><code>Matrix&lt;float/double/int,Dynamic,1&gt;</code></td>
+<td style="text-align:center"><code>VectorXf(10)</code>、<code>VectorXd(100)</code>、<code>VectorXi(1000)</code></td>
+<td style="text-align:center">动态</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>RowVector&lt;n&gt;&lt;type&gt;</code>, 2≤n≤4</td>
+<td style="text-align:center"><code>Matrix&lt;float/double/int,1,&lt;n&gt;&gt;</code></td>
+<td style="text-align:center"><code>RowVector2f</code>、<code>RowVector3d</code>、<code>RowVector4i</code></td>
+<td style="text-align:center">静态</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>RowVectorX&lt;type&gt;</code></td>
+<td style="text-align:center"><code>Matrix&lt;float/double/int,1,Dynamic&gt;</code></td>
+<td style="text-align:center"><code>RowVectorXf(10)</code>、<code>RowVectorXd(100)</code>、<code>RowVectorXi(1000)</code></td>
+<td style="text-align:center">动态</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Matrix&lt;n&gt;&lt;type&gt;</code>, 2≤n≤4</td>
+<td style="text-align:center"><code>Matrix&lt;float/double/int,&lt;n&gt;,&lt;n&gt;&gt;</code></td>
+<td style="text-align:center"><code>Matrix2f</code>、<code>Matrix3d</code>、<code>Matrix4i</code></td>
+<td style="text-align:center">静态</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>MatrixX&lt;type&gt;</code></td>
+<td style="text-align:center"><code>Matrix&lt;float/double/int,Dynamic,Dynamic&gt;</code></td>
+<td style="text-align:center"><code>MatrixXf(3,3)</code>、<code>MatrixXd(5,100)</code>、<code>Matrix4i(200,50)</code></td>
+<td style="text-align:center">动态</td>
+</tr>
+</tbody>
+</table>
 </div>
+<h3 id="数据类型通用记法"><a href="#数据类型通用记法" class="headerlink" title="数据类型通用记法"></a>数据类型通用记法</h3><p>Eigen数据类型可通用的记成：&lt;矩阵类型&gt;&lt;维度&gt;&lt;数据类型&gt;的形式，具体的：</p>
+<ul>
+<li>&lt;矩阵类型&gt;可分为：<code>Vector</code>列向量、<code>RowVector</code>行向量、<code>Matrix</code>矩阵</li>
+<li>&lt;维度&gt;对向量可分为：2、3、4、X，其中X为动态向量</li>
+<li>&lt;维度&gt;对矩阵可分为：2、3、4、2X、3X、4X、X2、X3、X4、X，其中如2X代表2行任意列的动态矩阵，X代表行列均动态大小的矩阵</li>
+<li>&lt;数据类型&gt;包含：f、d、i，分别对应float、double、int，以及cf、cd、ci，对应相应的复数形式</li>
+</ul>
+<p>注：对于维度中所有包含X的类型均为动态类型，在变量定义时会使用动态内存分配</p>
+<h2 id="禁止动态内存分配的方法"><a href="#禁止动态内存分配的方法" class="headerlink" title="禁止动态内存分配的方法"></a>禁止动态内存分配的方法</h2><h3 id="Eigen中的预编译宏"><a href="#Eigen中的预编译宏" class="headerlink" title="Eigen中的预编译宏"></a>Eigen中的预编译宏</h3><p>Eigen中提供了两个宏来禁止内存分配：</p>
+<ul>
+<li><code>EIGEN_NO_MALLOC</code>: if defined, any request from inside the Eigen to allocate memory from the heap results in an assertion failure. This is useful to check that some routine does not allocate memory dynamically. Not defined by default.</li>
+<li><code>EIGEN_RUNTIME_NO_MALLOC</code>: if defined, a new switch is introduced which can be turned on and off by calling set_is_malloc_allowed(bool). If malloc is not allowed and Eigen tries to allocate memory dynamically anyway, an assertion failure results. Not defined by default.</li>
+</ul>
+<p>简单的讲：</p>
+<ul>
+<li><code>EIGEN_NO_MALLOC</code>: 禁止使用堆内存分配，如果使用将会触发断言</li>
+<li><code>EIGEN_RUNTIME_NO_MALLOC</code>: 提供一个接口<code>set_is_malloc_allowed(bool)</code>来细粒度控制禁止堆内存分配的代码段</li>
+</ul>
+<p>注：两者不可混用</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>【重要】宏的声明必须在inclued之前，以保证正确启用</p>
+<p><code>EIGEN_NO_MALLOC</code>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EIGEN_NO_MALLOC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Core&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Dense&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	EEigen::Vector3f v1;		<span class="comment">//不会触发断言</span></span><br><span class="line">	Eigen::VectorXf v2;			<span class="comment">//不会触发断言</span></span><br><span class="line">	v2.resize(<span class="number">3</span>);				<span class="comment">//会触发断言</span></span><br><span class="line">	Eigen::<span class="function">VectorXf <span class="title">v3</span><span class="params">(<span class="number">10</span>)</span></span>; 	<span class="comment">//会触发断言</span></span><br><span class="line">	</span><br><span class="line">	Eigen::Matrix3f m1;			<span class="comment">//不会触发断言</span></span><br><span class="line">	Eigen::MatrixXf m2;			<span class="comment">//不会触发断言</span></span><br><span class="line">	m2.resize(<span class="number">5</span>,<span class="number">5</span>);				<span class="comment">//会触发断言</span></span><br><span class="line">	Eigen::<span class="function">MatrixXf <span class="title">m3</span><span class="params">(<span class="number">10</span>,<span class="number">5</span>)</span></span>;	<span class="comment">//会触发断言</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//会触发断言</span></span><br><span class="line">	Eigen::MatrixXf m_svd = Eigen::MatrixXf::Random(<span class="number">6</span>, <span class="number">6</span>);</span><br><span class="line">	<span class="comment">//会触发断言</span></span><br><span class="line">	Eigen::JacobiSVD&lt;Eigen::MatrixXf&gt; svd(m_svd, Eigen::ComputeFullV | Eigen::ComputeFullU);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>EIGEN_RUNTIME_NO_MALLOC</code>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EIGEN_RUNTIME_NO_MALLOC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Core&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Dense&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Eigen::internal::set_is_malloc_allowed(<span class="literal">true</span>);</span><br><span class="line">	Eigen::<span class="function">VectorXf <span class="title">v1</span><span class="params">(<span class="number">10</span>)</span></span>; 	<span class="comment">//不会触发断言</span></span><br><span class="line">	Eigen::internal::set_is_malloc_allowed(<span class="literal">false</span>);</span><br><span class="line">	</span><br><span class="line">	Eigen::<span class="function">VectorXf <span class="title">v2</span><span class="params">(<span class="number">10</span>)</span></span>;		<span class="comment">//会触发断言</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>断言内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/include/eigen3/Eigen/src/Core/util/Memory.h:206: void Eigen::internal::check_that_malloc_is_allowed(): Assertion `is_malloc_allowed() &amp;&amp; &quot;heap allocation is forbidden (EIGEN_RUNTIME_NO_MALLOC is defined and g_is_malloc_allowed is false)&quot;&apos; failed.</span><br></pre></td></tr></table></figure>
+<h3 id="避免动态内存分配的方法"><a href="#避免动态内存分配的方法" class="headerlink" title="避免动态内存分配的方法"></a>避免动态内存分配的方法</h3><ul>
+<li>对于2-4维的向量及矩阵可使用原生数据类型：Vector3f、Matrix4d等</li>
+<li>避免使用带X的预制数据类型如：VectorXf、Matrix3Xd等</li>
+<li>对于高维向量及矩阵可显式声明如：Matrix<float, 1="" 10,="">等价于10维Vector、Matrix<double, 50="" 100,="">等价于100行50列Matrix</double,></float,></li>
+<li>编码中使用上述宏来检查是否使用动态内存分配</li>
+</ul>
+<p>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EIGEN_NO_MALLOC</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Core&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Dense&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Eigen::Matrix&lt;<span class="keyword">float</span>, <span class="number">10</span>, <span class="number">1</span>&gt; v1 		<span class="comment">//不会触发断言，等价于Eigen::VectorXf v1(10);</span></span><br><span class="line">	</span><br><span class="line">	Eigen::Matrix&lt;<span class="keyword">float</span>, <span class="number">10</span>, <span class="number">10</span>&gt; m1		<span class="comment">//不会触发断言，等价于Eigen::MatrixXf m1(10,10);</span></span><br><span class="line">	</span><br><span class="line">	Eigen::JacobiSVD&lt;Eigen::Matrix&lt;<span class="keyword">float</span>, <span class="number">10</span>, <span class="number">10</span>&gt;&gt; svd(m1, Eigen::ComputeFullV | Eigen::ComputeFullU);	<span class="comment">//不会触发断言</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://eigen.tuxfamily.org/dox/TopicPreprocessorDirectives.html" target="_blank" rel="noopener">http://eigen.tuxfamily.org/dox/TopicPreprocessorDirectives.html</a></li>
+</ul>
 
-</header>
-
-      
-      
-      
-      <div class="post-body">
-        
-        
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                
-                  
-                
-                目前共计 22 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Bullet/" style="font-size: 12px; color: #ccc">Bullet</a> <a href="/tags/C/" style="font-size: 24px; color: #4f4f4f">C++</a> <a href="/tags/Cmake/" style="font-size: 12px; color: #ccc">Cmake</a> <a href="/tags/Eigen/" style="font-size: 30px; color: #111">Eigen</a> <a href="/tags/Hash/" style="font-size: 12px; color: #ccc">Hash</a> <a href="/tags/KDL/" style="font-size: 18px; color: #8e8e8e">KDL</a> <a href="/tags/MKL/" style="font-size: 18px; color: #8e8e8e">MKL</a> <a href="/tags/OSG/" style="font-size: 18px; color: #8e8e8e">OSG</a> <a href="/tags/OpenMP/" style="font-size: 12px; color: #ccc">OpenMP</a> <a href="/tags/QT/" style="font-size: 12px; color: #ccc">QT</a> <a href="/tags/ROS/" style="font-size: 18px; color: #8e8e8e">ROS</a> <a href="/tags/Reflexxes/" style="font-size: 12px; color: #ccc">Reflexxes</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/osgBullet/" style="font-size: 12px; color: #ccc">osgBullet</a> <a href="/tags/osgWorks/" style="font-size: 12px; color: #ccc">osgWorks</a> <a href="/tags/内存管理/" style="font-size: 12px; color: #ccc">内存管理</a> <a href="/tags/并行-并发-多线程/" style="font-size: 18px; color: #8e8e8e">并行/并发/多线程</a> <a href="/tags/机器人/" style="font-size: 24px; color: #4f4f4f">机器人</a> <a href="/tags/点云/" style="font-size: 12px; color: #ccc">点云</a> <a href="/tags/线性代数/" style="font-size: 12px; color: #ccc">线性代数</a> <a href="/tags/运动学/" style="font-size: 18px; color: #8e8e8e">运动学</a> <a href="/tags/运动规划/" style="font-size: 12px; color: #ccc">运动规划</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Raymond.Z</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiazuomo.com/2018/eigen-no-malloc/" title="Eigen禁止Malloc动态内存分配的方法">http://xiazuomo.com/2018/eigen-no-malloc/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Eigen/" rel="tag"># Eigen</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/内存管理/" rel="tag"># 内存管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/reflexxes-motion-library-intro/" rel="next" title="Reflexxes运动规划库简介">
+                <i class="fa fa-chevron-left"></i> Reflexxes运动规划库简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/eigen-with-mkl/" rel="prev" title="Eigen使用MKL作为backend加速矩阵运算">
+                Eigen使用MKL作为backend加速矩阵运算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -510,8 +663,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -652,6 +814,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix的内存分配"><span class="nav-number">2.</span> <span class="nav-text">Matrix的内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用Eigen类型的内存分配"><span class="nav-number">2.1.</span> <span class="nav-text">常用Eigen类型的内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型通用记法"><span class="nav-number">2.2.</span> <span class="nav-text">数据类型通用记法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止动态内存分配的方法"><span class="nav-number">3.</span> <span class="nav-text">禁止动态内存分配的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eigen中的预编译宏"><span class="nav-number">3.1.</span> <span class="nav-text">Eigen中的预编译宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">3.2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免动态内存分配的方法"><span class="nav-number">3.3.</span> <span class="nav-text">避免动态内存分配的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -843,6 +1021,28 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: '1540435389000',
+            owner: 'zfrxiaxia',
+            repo: 'zfrxiaxia.github.io',
+            
+            oauth: {
+            
+            
+                client_secret: '39c91557dff9d99b145169a574d090ab21ee0bce',
+            
+                client_id: '860e9aee0455e25dc315'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 

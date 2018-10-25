@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://xiazuomo.com/2018/eigen-with-mkl/</loc>
+    <lastmod>2018-10-25T02:43:21.000Z</lastmod>
+  </url>  <url>
+    <loc>http://xiazuomo.com/2018/eigen-no-malloc/</loc>
+    <lastmod>2018-10-25T02:43:09.000Z</lastmod>
+  </url>  <url>
     <loc>http://xiazuomo.com/2018/reflexxes-motion-library-intro/</loc>
     <lastmod>2018-10-17T01:03:41.000Z</lastmod>
   </url>  <url>
