@@ -37,7 +37,7 @@ updated: 2018-10-25 10:43:21
 
 - 运行`sudo gedit /etc/profile`，添加：
 
-```
+```bash
 export MKL_ROOT_DIR=/opt/intel/mkl
 ```
 
@@ -58,7 +58,7 @@ export MKL_ROOT_DIR=/opt/intel/mkl
 
 其中启用OpenMP通过添加`-fopenmp`实现
 
-```
+```cmake
 cmake_minimum_required (VERSION 2.6 FATAL_ERROR)
 project(test)
 
@@ -96,7 +96,7 @@ Ubuntu下常用配置为
 
 ### Eigen
 
-```
+```cpp
 #define EIGEN_VECTORIZE_SSE4_2
 
 #include <iostream>
@@ -121,13 +121,14 @@ int main()
     std::cout<< "此程序的运行时间为" << totaltime << "秒" <<std::endl;
     
     return 0;
+}
 ```
 
 ### Eigen+OpenMP
 
 添加`-fopenmp`编译参数，2线程，上一代码添加如下语句：
 
-```
+```cpp
 #define EIGEN_VECTORIZE_SSE4_2
 
 #include <iostream>
@@ -140,6 +141,7 @@ int main()
 {
     omp_set_num_threads(2);
 	...
+}
 ```
 
 ### Eigen+MKL单线程
@@ -159,13 +161,14 @@ FindMKL.cmake中使用`MKL_LP_SEQUENTIAL_LIBRARIES`，添加`#define EIGEN_USE_M
 int main()
 {
 	...
+}
 ```
 
 ### Eigen+MKL多线程
 
 FindMKL.cmake中使用`MKL_LP_GNUTHREAD_LIBRARIES`，添加`#define EIGEN_USE_MKL_ALL`、`omp_set_num_threads(2);`，使用2线程
 
-```
+```cpp
 #define EIGEN_USE_MKL_ALL
 #define EIGEN_VECTORIZE_SSE4_2
 
@@ -179,6 +182,7 @@ int main()
 {
     omp_set_num_threads(2);
     ...
+}
 ```
 
 ### 结果对比
@@ -209,7 +213,7 @@ Eigen+MKL的配置方式无效，仅对Eigen或Eigen+OpenMP生效。
 
 FindMKL.cmake
 
-```
+```cmake
 # - Try to find the Intel Math Kernel Library
 #   Forked from: https://github.com/openmeeg/openmeeg/blob/master/macros/FindMKL.cmake
 # Once done this will define
