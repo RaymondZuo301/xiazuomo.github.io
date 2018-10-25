@@ -1,7 +1,7 @@
 ---
 title: 线性代数库调研
 categories:
-  - 学习
+  - 算法
 tags:
   - Eigen
   - MKL
@@ -11,8 +11,6 @@ mathjax: true
 date: 2018-10-12 10:35:40
 updated: 2018-10-12 10:35:40
 ---
-
-# 线性代数库调研
 
 ## 前言
 

@@ -6,7 +6,7 @@
 title: 虾琢磨
 subtitle: 用代码做有意思的事情
 description: 用代码做有意思的事情 
-author: ZFR
+author: Raymond.Z
 email: zfr900301@gmail.com
 language: zh-CN
 timezone:
@@ -98,3 +98,12 @@ search:
   field: post
   format: html
   limit: 10000
+
+# 统计
+symbols_count_time:
+ #文章内是否显示
+  symbols: true
+  time: false
+ # 网页底部是否显示
+  total_symbols: true
+  total_time: false
