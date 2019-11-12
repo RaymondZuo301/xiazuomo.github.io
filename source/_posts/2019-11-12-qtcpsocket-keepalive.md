@@ -1,9 +1,12 @@
 ---
-title: qtcpsocket-keepalive
+title: QTcpSocket利用setsockopt实现连接保活
 categories:
-  - temp
+  - 技巧
 tags:
-  - temp
+  - Qt
+  - Socket
+  - TCP
+  - 通讯
 comments: true
 mathjax: false
 date: 2019-11-12 11:04:33
