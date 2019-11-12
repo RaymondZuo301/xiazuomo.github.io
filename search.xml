@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[qtcpsocket-keepalive]]></title>
+    <title><![CDATA[QTcpSocket利用setsockopt实现连接保活]]></title>
     <url>%2F2019%2Fqtcpsocket-keepalive%2F</url>
     <content type="text"><![CDATA[QTcpSocket利用setsockopt实现连接保活保活机制socket保活有三种机制： SO_KEEPALIVE SIO_KEEPALIVE_VALS Heart-Beat Linux的keepalive机制Linux内置支持keepalive机制，涉及三个变量： tcp_keepalive_time：失连时间（秒） tcp_keepalive_intvl：重连间隔（秒） tcp_keepalive_probes：重连次数（次） 查看方式： 123cat /proc/sys/net/ipv4/tcp_keepalive_timecat /proc/sys/net/ipv4/tcp_keepalive_intvlcat /proc/sys/net/ipv4/tcp_keepalive_probes 默认情况下为： 1237200759 手动设置方式（重启失效）： 123echo 100 &gt; /proc/sys/net/ipv4/tcp_keepalive_timeecho 10 &gt; /proc/sys/net/ipv4/tcp_keepalive_intvlecho 1 &gt; /proc/sys/net/ipv4/tcp_keepalive_probes QTcpSocket中设置keepaliveQt提供了开启keepalive的接口，但是没有提供上述三个变量的配置接口： 1QTcpSocket::setSocketOption(QAbstractSocket::KeepAliveOption, 1); 设置方式需要使用中提供的： 1234/* Set socket FD's option OPTNAME at protocol level LEVEL to *OPTVAL (which is OPTLEN bytes long). Returns 0 on success, -1 for errors. */extern int setsockopt (int __fd, int __level, int __optname, const void *__optval, socklen_t __optlen) __THROW; 其中： fd: socket句柄 level: 协议层（SOL_SOCKET、SOL_TCP） optname: 变量名（SO_KEEPALIVE、TCP_KEEPIDLE、TCP_KEEPINTVL、TCP_KEEPCNT） optval: 变量指针 optlen: 变量长度 如使用了SO_KEEPALIVE可不设置qt自带的QAbstractSocket::KeepAliveOption 代码示例12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;sys/types.h&gt;#include &lt;sys/socket.h&gt;#include &lt;fcntl.h&gt;#include &lt;netinet/tcp.h&gt;QTcpSocket *client = new QTcpSocket(this);client-&gt;connectToHost(ip,8888);if(client-&gt;waitForConnected(1000))&#123; if(client-&gt;socketDescriptor() == -1) &#123; S_WARN("fail to get socketDescriptor"); &#125; else &#123; Log("socketDescriptor &#123;&#125;", client-&gt;socketDescriptor()); &#125; //开启保活 int enable = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_SOCKET, SO_KEEPALIVE, &amp;enable, sizeof(enable)) != 0) &#123; Log("fail to enable SO_KEEPALIVE"); &#125; //失连时间&gt;0 int lost_time = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_TCP, TCP_KEEPIDLE, &amp;lost_time, sizeof(lost_time)) != 0) &#123; Log("fail to enable TCP_KEEPIDLE"); &#125; //重连时间&gt;0 int retry_time = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_TCP, TCP_KEEPINTVL, &amp;retry_time, sizeof(retry_time)) != 0) &#123; Log("fail to enable TCP_KEEPINTVL"); &#125; //重连次数&gt;0 int retry_num = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_TCP, TCP_KEEPCNT, &amp;retry_num, sizeof(retry_num)) != 0) &#123; Log("fail to enable TCP_KEEPCNT"); &#125;&#125; 参考 https://forum.qt.io/topic/2371/qtcpsocket-check-cable-disconnected https://blog.csdn.net/yhc1991/article/details/46453585 https://blog.csdn.net/wan_hust/article/details/25835025 https://www.cnblogs.com/liushui-sky/p/6530406.html]]></content>
       <categories>
-        <category>temp</category>
+        <category>技巧</category>
       </categories>
       <tags>
-        <tag>temp</tag>
+        <tag>Qt</tag>
+        <tag>Socket</tag>
+        <tag>TCP</tag>
+        <tag>通讯</tag>
       </tags>
   </entry>
   <entry>
@@ -19,9 +22,9 @@
         <category>技巧</category>
       </categories>
       <tags>
-        <tag>Eigen</tag>
         <tag>C++</tag>
         <tag>并行/并发/多线程</tag>
+        <tag>Eigen</tag>
         <tag>MKL</tag>
         <tag>OpenMP</tag>
       </tags>
@@ -34,8 +37,8 @@
         <category>技巧</category>
       </categories>
       <tags>
-        <tag>Eigen</tag>
         <tag>C++</tag>
+        <tag>Eigen</tag>
         <tag>内存管理</tag>
       </tags>
   </entry>
@@ -47,9 +50,9 @@
         <category>机器人</category>
       </categories>
       <tags>
+        <tag>机器人</tag>
         <tag>Reflexxes</tag>
         <tag>运动规划</tag>
-        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
@@ -60,10 +63,10 @@
         <category>机器人</category>
       </categories>
       <tags>
-        <tag>机器人</tag>
         <tag>KDL</tag>
         <tag>运动学</tag>
         <tag>ROS</tag>
+        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
@@ -74,10 +77,10 @@
         <category>机器人</category>
       </categories>
       <tags>
-        <tag>机器人</tag>
         <tag>KDL</tag>
         <tag>运动学</tag>
         <tag>ROS</tag>
+        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
@@ -114,8 +117,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Eigen</tag>
         <tag>点云</tag>
+        <tag>Eigen</tag>
       </tags>
   </entry>
   <entry>
