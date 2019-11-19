@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Lua5.3.5/LuaSocket编译及LuaSocket使用范例]]></title>
+    <url>%2F2019%2Flua-socket%2F</url>
+    <content type="text"><![CDATA[Lua编译 下载，http://www.lua.org/download.html make clean all linux sudo make install LuaSocket编译 sudo git clone https://github.com/diegonehab/luasocket cd luasocket sudo make clean all install LUAV=5.3 使用范例包引用 local socket = require(&quot;socket&quot;) 连接服务端 12345678910host = "*"port = 8080--创建TCPsoketserver = socket.bind(host, port)--获取连接信息i, p = server:getsockname()--设置超时时间socket:settimeout(5)--等待连接client = server:accept() 客户端 123456host = "localhost"port = 8080--连接client = socket.connect(host, port)--设置超时时间client:settimeout(5) 接受/发送接收端 1l, e = client:receive() 发送端 123str = "hello"-- 发送端结尾一定要加`\n`c:send(str .. "\n") 其他接口 setoption(option [, value])：进行keepalive等设置 client:shutdown(mode)：mode = [both/send/receive]，关闭全双工连接的全部或部分 luaSocket其他功能 DNS FTP HTTP LTN12 MIME SMTP UDP URL 测试代码Listener.lua 1234567891011121314151617181920local socket = require("socket")host = host or "*"port = port or 8080if arg then host = arg[1] or host port = arg[2] or portendprint("Binding to host '" ..host.. "' and port " ..port.. "...")s = assert(socket.bind(host, port))i, p = s:getsockname()assert(i, p)print("Waiting connection from talker on " .. i .. ":" .. p .. "...")c = assert(s:accept())print("Connected. Here is the stuff:")l, e = c:receive()while not e do print(l) l, e = c:receive()endprint(e) Talker.lua 1234567891011121314151617local socket = require("socket")host = host or "localhost"port = port or 8080if arg then host = arg[1] or host port = arg[2] or portendprint("Attempting connection to host '" ..host.. "' and port " ..port.. "...")c = assert(socket.connect(host, port))print("Connected! Please type stuff (empty line to stop):")l = "123"i = 0while l and l ~= "" and not e do assert(c:send(l .. "\n")) l = i i = i+1end 参考链接 Home Reference]]></content>
+      <categories>
+        <category>技巧</category>
+      </categories>
+      <tags>
+        <tag>Socket</tag>
+        <tag>TCP</tag>
+        <tag>通信</tag>
+        <tag>Lua</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[QTcpSocket利用setsockopt实现连接保活]]></title>
     <url>%2F2019%2Fqtcpsocket-keepalive%2F</url>
     <content type="text"><![CDATA[QTcpSocket利用setsockopt实现连接保活保活机制socket保活有三种机制： SO_KEEPALIVE SIO_KEEPALIVE_VALS Heart-Beat Linux的keepalive机制Linux内置支持keepalive机制，涉及三个变量： tcp_keepalive_time：失连时间（秒） tcp_keepalive_intvl：重连间隔（秒） tcp_keepalive_probes：重连次数（次） 查看方式： 123cat /proc/sys/net/ipv4/tcp_keepalive_timecat /proc/sys/net/ipv4/tcp_keepalive_intvlcat /proc/sys/net/ipv4/tcp_keepalive_probes 默认情况下为： 1237200759 手动设置方式（重启失效）： 123echo 100 &gt; /proc/sys/net/ipv4/tcp_keepalive_timeecho 10 &gt; /proc/sys/net/ipv4/tcp_keepalive_intvlecho 1 &gt; /proc/sys/net/ipv4/tcp_keepalive_probes QTcpSocket中设置keepaliveQt提供了开启keepalive的接口，但是没有提供上述三个变量的配置接口： 1QTcpSocket::setSocketOption(QAbstractSocket::KeepAliveOption, 1); 设置方式需要使用中提供的： 1234/* Set socket FD's option OPTNAME at protocol level LEVEL to *OPTVAL (which is OPTLEN bytes long). Returns 0 on success, -1 for errors. */extern int setsockopt (int __fd, int __level, int __optname, const void *__optval, socklen_t __optlen) __THROW; 其中： fd: socket句柄 level: 协议层（SOL_SOCKET、SOL_TCP） optname: 变量名（SO_KEEPALIVE、TCP_KEEPIDLE、TCP_KEEPINTVL、TCP_KEEPCNT） optval: 变量指针 optlen: 变量长度 如使用了SO_KEEPALIVE可不设置qt自带的QAbstractSocket::KeepAliveOption 代码示例12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;sys/types.h&gt;#include &lt;sys/socket.h&gt;#include &lt;fcntl.h&gt;#include &lt;netinet/tcp.h&gt;QTcpSocket *client = new QTcpSocket(this);client-&gt;connectToHost(ip,8888);if(client-&gt;waitForConnected(1000))&#123; if(client-&gt;socketDescriptor() == -1) &#123; S_WARN("fail to get socketDescriptor"); &#125; else &#123; Log("socketDescriptor &#123;&#125;", client-&gt;socketDescriptor()); &#125; //开启保活 int enable = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_SOCKET, SO_KEEPALIVE, &amp;enable, sizeof(enable)) != 0) &#123; Log("fail to enable SO_KEEPALIVE"); &#125; //失连时间&gt;0 int lost_time = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_TCP, TCP_KEEPIDLE, &amp;lost_time, sizeof(lost_time)) != 0) &#123; Log("fail to enable TCP_KEEPIDLE"); &#125; //重连时间&gt;0 int retry_time = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_TCP, TCP_KEEPINTVL, &amp;retry_time, sizeof(retry_time)) != 0) &#123; Log("fail to enable TCP_KEEPINTVL"); &#125; //重连次数&gt;0 int retry_num = 1; if(setsockopt(client-&gt;socketDescriptor(), SOL_TCP, TCP_KEEPCNT, &amp;retry_num, sizeof(retry_num)) != 0) &#123; Log("fail to enable TCP_KEEPCNT"); &#125;&#125; 参考 https://forum.qt.io/topic/2371/qtcpsocket-check-cable-disconnected https://blog.csdn.net/yhc1991/article/details/46453585 https://blog.csdn.net/wan_hust/article/details/25835025 https://www.cnblogs.com/liushui-sky/p/6530406.html]]></content>
@@ -8,9 +22,9 @@
         <category>技巧</category>
       </categories>
       <tags>
-        <tag>Qt</tag>
         <tag>Socket</tag>
         <tag>TCP</tag>
+        <tag>Qt</tag>
         <tag>通讯</tag>
       </tags>
   </entry>

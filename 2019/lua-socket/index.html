@@ -108,23 +108,25 @@
 
 
 
-  <meta name="description" content="用代码做有意思的事情">
-<meta property="og:type" content="website">
-<meta property="og:title" content="虾琢磨">
-<meta property="og:url" content="http://xiazuomo.com/archives/2019/index.html">
+  <meta name="description" content="Lua编译 下载，http://www.lua.org/download.html make clean all linux sudo make install  LuaSocket编译 sudo git clone https://github.com/diegonehab/luasocket cd luasocket sudo make clean all install LUAV=5.3">
+<meta name="keywords" content="Socket,TCP,通信,Lua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lua5.3.5&#x2F;LuaSocket编译及LuaSocket使用范例">
+<meta property="og:url" content="http://xiazuomo.com/2019/lua-socket/index.html">
 <meta property="og:site_name" content="虾琢磨">
-<meta property="og:description" content="用代码做有意思的事情">
+<meta property="og:description" content="Lua编译 下载，http://www.lua.org/download.html make clean all linux sudo make install  LuaSocket编译 sudo git clone https://github.com/diegonehab/luasocket cd luasocket sudo make clean all install LUAV=5.3">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-19T09:14:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虾琢磨">
-<meta name="twitter:description" content="用代码做有意思的事情">
+<meta name="twitter:title" content="Lua5.3.5&#x2F;LuaSocket编译及LuaSocket使用范例">
+<meta name="twitter:description" content="Lua编译 下载，http://www.lua.org/download.html make clean all linux sudo make install  LuaSocket编译 sudo git clone https://github.com/diegonehab/luasocket cd luasocket sudo make clean all install LUAV=5.3">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xiazuomo.com/archives/2019/"/>
+  <link rel="canonical" href="http://xiazuomo.com/2019/lua-socket/"/>
 
 
 
@@ -134,7 +136,7 @@
   };
 </script>
 
-  <title>归档 | 虾琢磨</title>
+  <title>Lua5.3.5/LuaSocket编译及LuaSocket使用范例 | 虾琢磨</title>
   
 
 
@@ -181,7 +183,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,7 +256,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
@@ -318,143 +320,282 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 14 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiazuomo.com/2019/lua-socket/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Raymond.Z">
+      <meta itemprop="description" content="用代码做有意思的事情">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾琢磨">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/lua-socket/" itemprop="url">
-              
-                <span itemprop="name">Lua5.3.5/LuaSocket编译及LuaSocket使用范例</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Lua5.3.5/LuaSocket编译及LuaSocket使用范例
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-19T17:14:12+08:00"
-              content="2019-11-19" >
-          11-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2019-11-19 17:14:12" itemprop="dateCreated datePublished" datetime="2019-11-19T17:14:12+08:00">2019-11-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技巧/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.8k</span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/qtcpsocket-keepalive/" itemprop="url">
-              
-                <span itemprop="name">QTcpSocket利用setsockopt实现连接保活</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-12T11:04:33+08:00"
-              content="2019-11-12" >
-          11-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h2 id="Lua编译"><a href="#Lua编译" class="headerlink" title="Lua编译"></a>Lua编译</h2><ul>
+<li>下载，<a href="http://www.lua.org/download.html" target="_blank" rel="noopener">http://www.lua.org/download.html</a></li>
+<li><code>make clean all linux</code></li>
+<li><code>sudo make install</code></li>
+</ul>
+<h2 id="LuaSocket编译"><a href="#LuaSocket编译" class="headerlink" title="LuaSocket编译"></a>LuaSocket编译</h2><ul>
+<li><code>sudo git clone https://github.com/diegonehab/luasocket</code></li>
+<li><code>cd luasocket</code></li>
+<li><code>sudo make clean all install LUAV=5.3</code></li>
+</ul>
+<h2 id="使用范例"><a href="#使用范例" class="headerlink" title="使用范例"></a>使用范例</h2><h3 id="包引用"><a href="#包引用" class="headerlink" title="包引用"></a>包引用</h3><ul>
+<li><code>local socket = require(&quot;socket&quot;)</code></li>
+</ul>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>服务端</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">host = <span class="string">"*"</span></span><br><span class="line">port = <span class="number">8080</span></span><br><span class="line"><span class="comment">--创建TCPsoket</span></span><br><span class="line">server = socket.bind(host, port)</span><br><span class="line"><span class="comment">--获取连接信息</span></span><br><span class="line">i, p = server:getsockname()</span><br><span class="line"><span class="comment">--设置超时时间</span></span><br><span class="line">socket:settimeout(<span class="number">5</span>)</span><br><span class="line"><span class="comment">--等待连接</span></span><br><span class="line">client = server:accept()</span><br></pre></td></tr></table></figure>
+<p>客户端</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host = <span class="string">"localhost"</span></span><br><span class="line">port = <span class="number">8080</span></span><br><span class="line"><span class="comment">--连接</span></span><br><span class="line">client = socket.connect(host, port)</span><br><span class="line"><span class="comment">--设置超时时间</span></span><br><span class="line">client:settimeout(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="接受-发送"><a href="#接受-发送" class="headerlink" title="接受/发送"></a>接受/发送</h3><p>接收端</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l, e = client:receive()</span><br></pre></td></tr></table></figure>
+<p>发送端</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"hello"</span></span><br><span class="line"><span class="comment">-- 发送端结尾一定要加`\n`</span></span><br><span class="line">c:send(str .. <span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="其他接口"><a href="#其他接口" class="headerlink" title="其他接口"></a>其他接口</h3><ul>
+<li><code>setoption(option [, value])</code>：进行keepalive等设置</li>
+<li><code>client:shutdown(mode)</code>：mode = [both/send/receive]，关闭全双工连接的全部或部分</li>
+</ul>
+<h2 id="luaSocket其他功能"><a href="#luaSocket其他功能" class="headerlink" title="luaSocket其他功能"></a>luaSocket其他功能</h2><ul>
+<li>DNS</li>
+<li>FTP</li>
+<li>HTTP</li>
+<li>LTN12</li>
+<li>MIME</li>
+<li>SMTP</li>
+<li>UDP</li>
+<li>URL</li>
+</ul>
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><p>Listener.lua</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> socket = <span class="built_in">require</span>(<span class="string">"socket"</span>)</span><br><span class="line">host = host <span class="keyword">or</span> <span class="string">"*"</span></span><br><span class="line">port = port <span class="keyword">or</span> <span class="number">8080</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">arg</span> <span class="keyword">then</span></span><br><span class="line">	host = <span class="built_in">arg</span>[<span class="number">1</span>] <span class="keyword">or</span> host</span><br><span class="line">	port = <span class="built_in">arg</span>[<span class="number">2</span>] <span class="keyword">or</span> port</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Binding to host '"</span> ..host.. <span class="string">"' and port "</span> ..port.. <span class="string">"..."</span>)</span><br><span class="line">s = <span class="built_in">assert</span>(socket.bind(host, port))</span><br><span class="line">i, p   = s:getsockname()</span><br><span class="line"><span class="built_in">assert</span>(i, p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Waiting connection from talker on "</span> .. i .. <span class="string">":"</span> .. p .. <span class="string">"..."</span>)</span><br><span class="line">c = <span class="built_in">assert</span>(s:accept())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Connected. Here is the stuff:"</span>)</span><br><span class="line">l, e = c:receive()</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> e <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">print</span>(l)</span><br><span class="line">	l, e = c:receive()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(e)</span><br></pre></td></tr></table></figure>
+<p>Talker.lua</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> socket = <span class="built_in">require</span>(<span class="string">"socket"</span>)</span><br><span class="line">host = host <span class="keyword">or</span> <span class="string">"localhost"</span></span><br><span class="line">port = port <span class="keyword">or</span> <span class="number">8080</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">arg</span> <span class="keyword">then</span></span><br><span class="line">	host = <span class="built_in">arg</span>[<span class="number">1</span>] <span class="keyword">or</span> host</span><br><span class="line">	port = <span class="built_in">arg</span>[<span class="number">2</span>] <span class="keyword">or</span> port</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Attempting connection to host '"</span> ..host.. <span class="string">"' and port "</span> ..port.. <span class="string">"..."</span>)</span><br><span class="line">c = <span class="built_in">assert</span>(socket.connect(host, port))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Connected! Please type stuff (empty line to stop):"</span>)</span><br><span class="line">l = <span class="string">"123"</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> l <span class="keyword">and</span> l ~= <span class="string">""</span> <span class="keyword">and</span> <span class="keyword">not</span> e <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">assert</span>(c:send(l .. <span class="string">"\n"</span>))</span><br><span class="line">	l = i</span><br><span class="line">	i = i+<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://w3.impa.br/~diego/software/luasocket/" target="_blank" rel="noopener">Home</a></li>
+<li><a href="http://w3.impa.br/~diego/software/luasocket/tcp.html" target="_blank" rel="noopener">Reference</a></li>
+</ul>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Raymond.Z</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiazuomo.com/2019/lua-socket/" title="Lua5.3.5/LuaSocket编译及LuaSocket使用范例">http://xiazuomo.com/2019/lua-socket/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Socket/" rel="tag"># Socket</a>
+          
+            <a href="/tags/TCP/" rel="tag"># TCP</a>
+          
+            <a href="/tags/通信/" rel="tag"># 通信</a>
+          
+            <a href="/tags/Lua/" rel="tag"># Lua</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/qtcpsocket-keepalive/" rel="next" title="QTcpSocket利用setsockopt实现连接保活">
+                <i class="fa fa-chevron-left"></i> QTcpSocket利用setsockopt实现连接保活
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -475,8 +616,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -633,6 +783,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lua编译"><span class="nav-number">1.</span> <span class="nav-text">Lua编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LuaSocket编译"><span class="nav-number">2.</span> <span class="nav-text">LuaSocket编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用范例"><span class="nav-number">3.</span> <span class="nav-text">使用范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#包引用"><span class="nav-number">3.1.</span> <span class="nav-text">包引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">3.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接受-发送"><span class="nav-number">3.3.</span> <span class="nav-text">接受/发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他接口"><span class="nav-number">3.4.</span> <span class="nav-text">其他接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#luaSocket其他功能"><span class="nav-number">4.</span> <span class="nav-text">luaSocket其他功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试代码"><span class="nav-number">5.</span> <span class="nav-text">测试代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -791,6 +957,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -820,6 +990,28 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: '1574154852000',
+            owner: 'zfrxiaxia',
+            repo: 'zfrxiaxia.github.io',
+            
+            oauth: {
+            
+            
+                client_secret: '39c91557dff9d99b145169a574d090ab21ee0bce',
+            
+                client_id: '860e9aee0455e25dc315'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
